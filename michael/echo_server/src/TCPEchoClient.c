@@ -57,7 +57,7 @@ int	main(int argc, char *argv[])
 
 	// 5.Recieve a response
 	totalBytesRcvd = 0;
-	printf("Recieved: ");
+	printf("Recieved:\n");
 
 	while (totalBytesRcvd < echoStringLen)
 	{
@@ -65,7 +65,8 @@ int	main(int argc, char *argv[])
 			DieWithError("recv() failed or connection closed prematurely");
 		totalBytesRcvd += bytesRcvd;
 		echoBuffer[bytesRcvd] = '\0';
-		printf("%s", echoBuffer);
+		printf("[%2dbytes]%s\n", bytesRcvd, echoBuffer);
+		// fflush(stdout);
 	}
 
 	printf("\n");

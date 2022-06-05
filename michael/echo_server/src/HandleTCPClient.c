@@ -19,6 +19,7 @@ void	HandleTCPClient(int clntSocket)
 	{
 		if (send(clntSocket, echoBuffer, recvMsgSize, 0) != recvMsgSize)
 			DieWithError("send() failed");
+		printf("[%dbytes]send!\n", recvMsgSize);
 
 		if((recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0)) < 0)
 			DieWithError("recv() failed");

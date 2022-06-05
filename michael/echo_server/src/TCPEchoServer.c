@@ -49,6 +49,7 @@ int	main(int argc, char *argv[])
 	{
 		clntLen = sizeof(echoClntAddr);
 
+		printf("before accept\n");
 		if((clntSock = accept(servSock, (struct sockaddr *)&echoClntAddr, &clntLen)) < 0)
 			DieWithError("accept() failed");
 
