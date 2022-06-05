@@ -56,9 +56,15 @@ int	main(int argc, char *argv[])
 		DieWithError("send() sent a different number of bytes than expected");
 
 	// 5.Recieve a response
-	totalBytesRcvd = 0;
-	printf("Recieved:\n");
 
+	printf("Greeting:\n");
+	if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE - 1, 0)) <= 0)
+		DieWithError("recv() failed or connection closed prematurely");
+	echoBuffer[bytesRcvd] = '\0';
+	printf("[%2dbytes]%s\n", bytesRcvd, echoBuffer);
+
+	printf("Recieved:\n");
+	totalBytesRcvd = 0;
 	while (totalBytesRcvd < echoStringLen)
 	{
 		if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE - 1, 0)) <= 0)

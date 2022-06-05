@@ -10,6 +10,7 @@
 
 void	DieWithError(char *errorMessage);
 void	HandleTCPClient(int clntSocket);
+void	SendGreeting(int clntSocket);
 
 int	main(int argc, char *argv[])
 {
@@ -55,6 +56,7 @@ int	main(int argc, char *argv[])
 
 		printf("Handling client [IP]%s [Port]%u\n", inet_ntoa(echoClntAddr.sin_addr), ntohs(echoClntAddr.sin_port));
 
+		SendGreeting(clntSock);
 		HandleTCPClient(clntSock);
 	}
 	printf("from server\n");

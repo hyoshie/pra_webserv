@@ -13,7 +13,7 @@ void	HandleTCPClient(int clntSocket)
 	int	recvMsgSize;
 
 	if((recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0)) < 0)
-		DieWithError("recv() failed");
+		DieWithError("recv() failed:first");
 
 	while (recvMsgSize > 0)
 	{
@@ -22,7 +22,7 @@ void	HandleTCPClient(int clntSocket)
 		printf("[%dbytes]send!\n", recvMsgSize);
 
 		if((recvMsgSize = recv(clntSocket, echoBuffer, RCVBUFSIZE, 0)) < 0)
-			DieWithError("recv() failed");
+			DieWithError("recv() failed:in loop");
 	}
 
 	close(clntSocket); //in TCPEchoServer is better?

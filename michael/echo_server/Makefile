@@ -7,6 +7,7 @@ BIN_DIR = ./bin
 
 SERVER_SRCS = TCPEchoServer.c \
 			 HandleTCPClient.c \
+			 SendGreeting.c \
 			 DieWithError.c \
 			 $(NULL)
 
