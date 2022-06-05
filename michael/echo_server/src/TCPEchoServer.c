@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 		if((clntSock = accept(servSock, (struct sockaddr *)&echoClntAddr, &clntLen)) < 0)
 			DieWithError("accept() failed");
 
-		printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
+		printf("Handling client [IP]%s [Port]%u\n", inet_ntoa(echoClntAddr.sin_addr), ntohs(echoClntAddr.sin_port));
 
 		HandleTCPClient(clntSock);
 	}
