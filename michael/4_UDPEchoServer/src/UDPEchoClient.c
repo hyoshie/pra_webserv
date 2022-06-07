@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define RCVBUFSIZE 32
+#define ECHOMAX 255
 
 void	DieWithError(char *errorMessage);
 
@@ -15,12 +15,14 @@ int	main(int argc, char *argv[])
 	// 1.Set up application and analyze params
 	int	sock;
 	struct sockaddr_in	echoServAddr;
+	struct sockaddr_in	fromAddr;
 	unsigned short		echoServPort;
+	unsigned int	fromSize;
 	char	*servIP;
 	char	*echoString;
-	char	echoBuffer[RCVBUFSIZE];
+	char	echoBuffer[ECHOMAX + 1];
 	unsigned int	echoStringLen;
-	int	bytesRcvd, totalBytesRcvd;
+	unsigned int	respStringLen;
 
 	if ((argc < 3) || (argc > 4))
 	{
@@ -31,57 +33,44 @@ int	main(int argc, char *argv[])
 	servIP = argv[1]; //IP of server
 	echoString = argv[2]; //string to send
 
+	if ((echoStringLen = strlen(echoString)) > ECHOMAX)
+		DieWithError("Echo word too long");
+
 	if (argc == 4)
 		echoServPort = atoi(argv[3]);
 	else
 		echoServPort = 7; //7 is well-known port number
 
-	// 2.Create TCP stream socket
-	if ((sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
+	// 2.Create UDP stream socket
+	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
 		DieWithError("socket() failed");
 
-	// 3.Connect to server
+	// 3.Send string to server
 	memset(&echoServAddr, 0, sizeof(echoServAddr));
 	echoServAddr.sin_family = AF_INET;
 	echoServAddr.sin_addr.s_addr = inet_addr(servIP);
 	echoServAddr.sin_port = htons(echoServPort);
 
-	if (connect(sock, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
-		DieWithError("connect() failed");
+	if (sendto(sock, echoString, echoStringLen, 0,
+		(struct sockaddr *)&echoServAddr, sizeof(echoServAddr)) != echoStringLen)
+		DieWithError("sendto() sent a different number of bytes than expected");
 
-	// 4.Send string to server
-	echoStringLen = strlen(echoString);
+	// 4.Recieve a response
+	fromSize = sizeof(fromAddr);
+	if ((respStringLen = recvfrom(sock, echoBuffer, ECHOMAX, 0,
+		(struct sockaddr *)&fromAddr, &fromSize)) != echoStringLen)
+			DieWithError("recvfrom() failed");
 
-	if (send(sock, echoString, echoStringLen, 0) != echoStringLen)
-		DieWithError("send() sent a different number of bytes than expected");
-
-	// 5.Recieve a response
-
-	printf("Greeting:\n");
-	if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE - 1, 0)) <= 0)
-		DieWithError("recv() failed or connection closed prematurely");
-	echoBuffer[bytesRcvd] = '\0';
-	printf("[%2dbytes]%s\n", bytesRcvd, echoBuffer);
-
-	printf("Recieved:\n");
-	totalBytesRcvd = 0;
-	while (totalBytesRcvd < echoStringLen)
+	if (echoServAddr.sin_addr.s_addr  == fromAddr.sin_addr.s_addr)
 	{
-		if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE - 1, 0)) <= 0)
-			DieWithError("recv() failed or connection closed prematurely");
-		totalBytesRcvd += bytesRcvd;
-		echoBuffer[bytesRcvd] = '\0';
-		printf("[%2dbytes]%s\n", bytesRcvd, echoBuffer);
-		// fflush(stdout);
+		fprintf(stderr, "Error,: received a packet from unknown source.\n");
+		exit(EXIT_FAILURE);
 	}
 
-	printf("\n");
-
-	// 6.Disconnect from server
+	echoBuffer[respStringLen] = '\0';
+	printf("Recieved: %s\n", echoBuffer);
 	close(sock);
 	exit(0);
-	printf("from client\n");
-	DieWithError("test");
 
 	return (0);
 }

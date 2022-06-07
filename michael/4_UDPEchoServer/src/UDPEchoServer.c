@@ -6,21 +6,24 @@
 #include <string.h>
 #include <unistd.h>
 
-#define MAXPENDING 5
+#define ECHOMAX 255
 
 void	DieWithError(char *errorMessage);
-void	HandleTCPClient(int clntSocket);
-void	SendGreeting(int clntSocket);
+void	HandleUDPClient(int clntSocket);
 
 int	main(int argc, char *argv[])
 {
 	// 1.Set up application and analyze params
-	int	servSock;
-	int	clntSock;
+	// int	servSock;
+	// int	clntSock;
+	int	sock;
 	struct sockaddr_in	echoServAddr;
 	struct sockaddr_in	echoClntAddr;
+	unsigned int	cliAddrLen;
+	char	echoBuffer[ECHOMAX + 1];
 	unsigned short	echoServPort;
 	unsigned int	clntLen;
+	int	recvMsgSize;
 
 	if (argc != 2)
 	{
@@ -31,7 +34,7 @@ int	main(int argc, char *argv[])
 	echoServPort = atoi(argv[1]);
 
 	// 2.Create and Set up socket
-	if ((servSock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
+	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) < 0)
 		DieWithError("socket() failed");
 
 	memset(&echoServAddr, 0, sizeof(echoServAddr));
@@ -39,26 +42,25 @@ int	main(int argc, char *argv[])
 	echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	echoServAddr.sin_port = htons(echoServPort);
 
-	if (bind(servSock, (struct sockaddr *)&echoServAddr, sizeof(echoServAddr)) < 0)
+	if (bind(sock, (struct sockaddr *)&echoServAddr, sizeof(echoServAddr)) < 0)
 		DieWithError("bind() failed");
-
-	if(listen(servSock, MAXPENDING) < 0)
-		DieWithError("listen() failed");
 
 	// 3.Handle request repeatedly
 	for (;;)
 	{
-		clntLen = sizeof(echoClntAddr);
+		cliAddrLen = sizeof(echoClntAddr);
 
-		printf("before accept\n");
-		if((clntSock = accept(servSock, (struct sockaddr *)&echoClntAddr, &clntLen)) < 0)
-			DieWithError("accept() failed");
-
+		if((recvMsgSize = recvfrom(sock, echoBuffer, ECHOMAX, 0,
+			(struct sockaddr *)&echoClntAddr, &cliAddrLen)) < 0)
+			DieWithError("recvfrom()");
 		printf("Handling client [IP]%s [Port]%u\n", inet_ntoa(echoClntAddr.sin_addr), ntohs(echoClntAddr.sin_port));
 
-		SendGreeting(clntSock);
-		HandleTCPClient(clntSock);
+	if (sendto(sock, echoBuffer, recvMsgSize, 0,
+		(struct sockaddr *)&echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
+		DieWithError("sendto() failed");
 	}
+
+	printf("[%dbytes]send!\n", recvMsgSize);
 	printf("from server\n");
 	return (0);
 }

@@ -6,8 +6,6 @@ OBJS_DIR = ./obj
 BIN_DIR = ./bin
 
 SERVER_SRCS = UDPEchoServer.c \
-			 HandleUDPClient.c \
-			 SendGreeting.c \
 			 DieWithError.c \
 			 $(NULL)
 
