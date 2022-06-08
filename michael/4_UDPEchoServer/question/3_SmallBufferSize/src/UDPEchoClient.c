@@ -61,7 +61,7 @@ int	main(int argc, char *argv[])
 		(struct sockaddr *)&fromAddr, &fromSize)) != echoStringLen)
 			DieWithError("recvfrom() failed");
 
-	if (echoServAddr.sin_addr.s_addr  == fromAddr.sin_addr.s_addr)
+	if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
 	{
 		fprintf(stderr, "Error,: received a packet from unknown source.\n");
 		exit(EXIT_FAILURE);
