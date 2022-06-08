@@ -6,7 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define ECHOMAX 255
+#define ECHOMAX 5
 
 void	DieWithError(char *errorMessage);
 

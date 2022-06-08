@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define ECHOMAX 255
+#define ECHOMAX 1 << 17 //131072
 
 void	DieWithError(char *errorMessage);
 void	HandleUDPClient(int clntSocket);
