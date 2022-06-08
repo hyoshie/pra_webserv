@@ -61,14 +61,15 @@ int	main(int argc, char *argv[])
 		(struct sockaddr *)&fromAddr, &fromSize)) != echoStringLen)
 			DieWithError("recvfrom() failed");
 
-	if (echoServAddr.sin_addr.s_addr  == fromAddr.sin_addr.s_addr)
+	if (echoServAddr.sin_addr.s_addr != fromAddr.sin_addr.s_addr)
 	{
 		fprintf(stderr, "Error,: received a packet from unknown source.\n");
+		printf("recieve from [IP]%s [Port]%u\n", inet_ntoa(fromAddr.sin_addr), ntohs(fromAddr.sin_port));
 		exit(EXIT_FAILURE);
 	}
 
 	echoBuffer[respStringLen] = '\0';
-	printf("Recieved: %s\n", echoBuffer);
+	printf("Recieved: %s, %d\n", echoBuffer, respStringLen);
 	close(sock);
 	exit(0);
 

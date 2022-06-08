@@ -83,20 +83,17 @@ void	SIGIOHandler(int signalType)
 		clntLen = sizeof(echoClntAddr);
 
 		if((recvMsgSize = recvfrom(sock, echoBuffer, ECHOMAX, 0,
-			(struct sockaddr *)&echoClntAddr, &clntLen) < 0))
+			(struct sockaddr *)&echoClntAddr, &clntLen)) < 0)
 		{
 			if (errno != EWOULDBLOCK)
-			// if (errno != EAGAIN)
 				DieWithError("recvfrom() failed");
 		}
 		else
 		{
-			// printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
-
+			printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
 			if (sendto(sock, echoBuffer, recvMsgSize, 0,
 				(struct sockaddr *)&echoClntAddr, sizeof(echoClntAddr)) != recvMsgSize)
 				DieWithError("sendto() failed");
-			printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
 		}
 	} while (recvMsgSize >= 0);
 }
