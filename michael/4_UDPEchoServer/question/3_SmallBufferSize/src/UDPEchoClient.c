@@ -21,8 +21,8 @@ int	main(int argc, char *argv[])
 	char	*servIP;
 	char	*echoString;
 	char	echoBuffer[ECHOMAX + 1];
-	unsigned int	echoStringLen;
-	unsigned int	respStringLen;
+	int	echoStringLen;
+	int	respStringLen;
 
 	if ((argc < 3) || (argc > 4))
 	{
