@@ -5,13 +5,13 @@ SRCS_DIR = ./src
 OBJS_DIR = ./obj
 BIN_DIR = ./bin
 
-SERVER_SRCS = BroadcastReceiver.c \
+SERVER_SRCS = MulticastReceiver.c \
 			  DieWithError.c \
 			  $(NULL)
 
 SERVER_OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SERVER_SRCS:.c=.o)))
 
-CLIENT_SRCS = BroadcastSender.c \
+CLIENT_SRCS = MulticastSender.c \
 			  DieWithError.c \
 			  $(NULL)
 
