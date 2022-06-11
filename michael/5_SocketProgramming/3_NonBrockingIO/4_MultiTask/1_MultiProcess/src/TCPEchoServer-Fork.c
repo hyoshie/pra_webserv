@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 		else if (processID == 0) //child proc
 		{
 			close(servSock);
+			sleep(5);
 			HandleTCPClient(clntSock);
 
 			exit(EXIT_SUCCESS);
@@ -43,13 +44,19 @@ int	main(int argc, char *argv[])
 		//clean zombie proc
 		while (childProccount)
 		{
+			printf("Wait Start:[childProccount]%d\n", childProccount);
 			processID = waitpid((pid_t)-1, NULL, WNOHANG);
 			if (processID < 0)
 				DieWithError("waitpid() failed");
 			else if (processID == 0)
+			{
+				printf("[\x1b[32mBreak\x1b[39m]\n");
 				break;
+			}
 			else
 				childProccount--;
+			printf("with child process: %d\n", (int)processID);
+			printf("##Wait End:[childProccount]%d\n", childProccount);
 		}
 	}
 	// not reach
