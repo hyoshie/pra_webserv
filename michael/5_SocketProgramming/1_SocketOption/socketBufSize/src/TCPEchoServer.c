@@ -21,6 +21,7 @@ int	main(int argc, char *argv[])
 	struct sockaddr_in	echoClntAddr;
 	unsigned short	echoServPort;
 	unsigned int	clntLen;
+	fd_set	set;
 
 	if (argc != 2)
 	{
