@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+SERVER_ADDR	main.c	/^#define SERVER_ADDR /;"	d	file:
+SERVER_PORT	main.c	/^#define SERVER_PORT /;"	d	file:
+SIZE	main.c	/^#define SIZE /;"	d	file:
+createResponseMessage	main.c	/^int createResponseMessage(char *response_message, int status, char *header, char *body, unsigned int body_size) {$/;"	f
+getFileSize	main.c	/^unsigned int getFileSize(const char *path) {$/;"	f
+getProcessing	main.c	/^int getProcessing(char *body, char *file_path) {$/;"	f
+httpServer	main.c	/^int httpServer(int sock) {$/;"	f
+main	main.c	/^int main(void) {$/;"	f
+parseRequestMessage	main.c	/^int parseRequestMessage(char *method, char *target, char *request_message) {$/;"	f
+recvRequestMessage	main.c	/^int recvRequestMessage(int sock, char *request_message, unsigned int buf_size) {$/;"	f
+sendResponseMessage	main.c	/^int sendResponseMessage(int sock, char *response_message, unsigned int message_size) {$/;"	f
+showMessage	main.c	/^void showMessage(char *message, unsigned int size) {$/;"	f
