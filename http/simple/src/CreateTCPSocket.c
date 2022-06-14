@@ -2,7 +2,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-#define MAXPENDING 5
+#define MAXPENDING 3
 
 void	DieWithError(char *errormessage);
 

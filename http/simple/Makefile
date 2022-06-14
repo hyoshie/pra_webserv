@@ -33,3 +33,5 @@ fclean: clean
 	$(RM) $(CLIENT_NAME)
 
 re: fclean all
+debug: CFLAGS += -D DEBUG=1
+debug: all

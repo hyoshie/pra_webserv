@@ -2,7 +2,11 @@
 #include <string.h>
 #include <sys/socket.h>
 
-#define SIZE 5 * 1024
+#define SIZE (5 * 1024)
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
 
 void	DieWithError(char *errormessage);
 
@@ -23,9 +27,7 @@ static int	ParseRequestMessage(char *method, char *target,  char *requestMessage
 	char	*tmpMethod;
 	char	*tmpTarget;
 
-	printf("[requestMessage]%s\n", requestMessage);
 	line = strtok(requestMessage, "\n");
-	printf("[line]%s\n", line);
 
 	tmpMethod = strtok(line, " ");
 	if (tmpMethod == NULL)
@@ -177,7 +179,8 @@ int	HttpServer(int clntSock)
 			break ;
 		}
 
-		ShowMessage(requestMessage, requestMessageSize);
+		if (DEBUG)
+			ShowMessage(requestMessage, requestMessageSize);
 
 		//2.受信した文字列を解析
 		//メソッドやリクエストターゲットを取得
@@ -193,6 +196,7 @@ int	HttpServer(int clntSock)
 			{
 				strcpy(target, "/index.html");
 			}
+			//最初の/を読み飛ばしている
 			status = GetProcessing(body, &target[1]);
 		}
 		else
@@ -201,6 +205,7 @@ int	HttpServer(int clntSock)
 		}
 
 		//ヘッダーフィールド作成
+		//最初の/を読み飛ばしている
 		fileSize = GetFileSize(&target[1]);
 		sprintf(headerField, "Content-Length: %u\r\n", fileSize);
 
@@ -211,7 +216,8 @@ int	HttpServer(int clntSock)
 			DieWithError("CreateResponseMessage() failed");
 		}
 
-		ShowMessage(responseMessage, responseMessageSize);
+		if (DEBUG)
+			ShowMessage(responseMessage, responseMessageSize);
 
 		//5.レスポンスメッセージを送信
 		SendResponseMessage(clntSock, responseMessage, responseMessageSize);
