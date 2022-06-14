@@ -27,6 +27,7 @@ int	main(int argc, char *argv[])
 		clntSock = AcceptTCPConeection(servSock);
 		HttpServer(clntSock);
 		close(clntSock);
+		printf("###http-server done###\n");
 	}
 	// not reach
 	close(servSock);

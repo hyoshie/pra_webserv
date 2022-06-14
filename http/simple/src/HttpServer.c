@@ -103,7 +103,7 @@ static int	CreateResponseMessage(char *responseMessage, int status, char *header
 
 	responseMessage[0] = '\0';
 
-	if (status = 200)
+	if (status == 200)
 	{
 		sprintf(responseMessage, "HTTP/1.1 200 OK\r\n%s\r\n", header);
 
@@ -140,7 +140,6 @@ static void	ShowMessage(char *message, unsigned int size)
 {
 	unsigned int	i;
 
-	printf("Show Message\n\n");
 	for (int i = 0; i < size; i++) {
 		putchar(message[i]);
 	}
@@ -180,7 +179,10 @@ int	HttpServer(int clntSock)
 		}
 
 		if (DEBUG)
+		{
+			printf("##### Request Message#####\n");
 			ShowMessage(requestMessage, requestMessageSize);
+		}
 
 		//2.受信した文字列を解析
 		//メソッドやリクエストターゲットを取得
@@ -217,7 +219,10 @@ int	HttpServer(int clntSock)
 		}
 
 		if (DEBUG)
+		{
+			printf("##### Response Message#####\n");
 			ShowMessage(responseMessage, responseMessageSize);
+		}
 
 		//5.レスポンスメッセージを送信
 		SendResponseMessage(clntSock, responseMessage, responseMessageSize);
