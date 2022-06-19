@@ -1,6 +1,9 @@
 #include <arpa/inet.h>
-#include <stdio.h>
 #include <sys/socket.h>
+
+#include <iostream>
+
+using namespace std;
 
 void DieWithError(const char *errormessage);
 
@@ -12,10 +15,10 @@ int AcceptTCPConeection(int servSock) {
   clntLen = sizeof(echoClntAddr);
 
   if ((clntSock =
-           accept(servSock, (struct sockaddr *)&echoClntAddr, &clntLen)) < 0)
+           accept(servSock, (struct sockaddr *)&echoClntAddr, &clntLen)) < 0) {
     DieWithError("accept() failed");
-
-  printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
+  }
+  cerr << "Accept: " << inet_ntoa(echoClntAddr.sin_addr) << endl;
 
   return clntSock;
 }

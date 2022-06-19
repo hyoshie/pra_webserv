@@ -8,7 +8,7 @@ BIN_DIR = ./bin
 SERVER_SRCS = AcceptTCPConeection.cpp \
 			  CreateTCPSocket.cpp \
 			  DieWithError.cpp \
-			  HandleTCPClient.cpp \
+			  RepeatClientMessage.cpp \
 			  TCPEchoServer-Select.cpp \
 			  $(NULL)
 
