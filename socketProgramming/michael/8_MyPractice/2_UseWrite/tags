@@ -1,0 +1,40 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AcceptTCPConeection	src/AcceptTCPConeection.cpp	/^int AcceptTCPConeection(int servSock) {$/;"	f
+BIN_DIR	Makefile	/^BIN_DIR = .\/bin$/;"	m
+BLUE	main.cpp	/^#define BLUE /;"	d	file:
+CLIENT_NAME	Makefile	/^CLIENT_NAME = client$/;"	m
+CLIENT_OBJS	Makefile	/^CLIENT_OBJS = $(addprefix $(OBJS_DIR)\/, $(notdir $(CLIENT_SRCS:.cpp=.o)))$/;"	m
+CLIENT_SRCS	Makefile	/^CLIENT_SRCS = TCPEchoClient.cpp \\$/;"	m
+CYAN	main.cpp	/^#define CYAN /;"	d	file:
+CreateTCPServerSocket	src/CreateTCPSocket.cpp	/^int CreateTCPServerSocket(unsigned short port) {$/;"	f
+DieWithError	src/DieWithError.cpp	/^void DieWithError(const char *errorMessage) {$/;"	f
+GREEN	main.cpp	/^#define GREEN /;"	d	file:
+HandleTCPClient	src/HandleTCPClient.cpp	/^void HandleTCPClient(int clntSocket) {$/;"	f
+InitSelectInfo	src/TCPEchoServer-Select.cpp	/^void InitSelectInfo(selectInfo *selInfo, int servSock, vector<int> &clntSocks) {$/;"	f
+MAGENTA	main.cpp	/^#define MAGENTA /;"	d	file:
+MAXPENDING	src/CreateTCPSocket.cpp	/^#define MAXPENDING /;"	d	file:
+MAX_CLIENTS	src/TCPEchoServer-Select.cpp	/^#define MAX_CLIENTS /;"	d	file:
+OBJS_DIR	Makefile	/^OBJS_DIR = .\/obj$/;"	m
+RCVBUFSIZE	src/HandleTCPClient.cpp	/^#define RCVBUFSIZE /;"	d	file:
+RCVBUFSIZE	src/TCPEchoClient.cpp	/^#define RCVBUFSIZE /;"	d	file:
+RED	main.cpp	/^#define RED /;"	d	file:
+RESET	main.cpp	/^#define RESET /;"	d	file:
+RepeatClientMessage	src/HandleTCPClient.cpp	/^int RepeatClientMessage(int clntSock) {$/;"	f
+SERVER_NAME	Makefile	/^SERVER_NAME = server$/;"	m
+SERVER_OBJS	Makefile	/^SERVER_OBJS = $(addprefix $(OBJS_DIR)\/, $(notdir $(SERVER_SRCS:.cpp=.o)))$/;"	m
+SERVER_SRCS	Makefile	/^SERVER_SRCS = AcceptTCPConeection.cpp \\$/;"	m
+SRCS_DIR	Makefile	/^SRCS_DIR = .\/src$/;"	m
+TCPECHOSERVER_H	src/TCPEchoServer.h	/^#define TCPECHOSERVER_H$/;"	d
+YELLOW	main.cpp	/^#define YELLOW /;"	d	file:
+main	main.cpp	/^int main() {$/;"	f
+main	src/TCPEchoClient.cpp	/^int main(int argc, char *argv[]) {$/;"	f
+main	src/TCPEchoServer-Select.cpp	/^int main(int argc, char *argv[]) {$/;"	f
+maxfd	src/TCPEchoServer-Select.cpp	/^  int maxfd;$/;"	m	struct:__anon1	file:
+readfds	src/TCPEchoServer-Select.cpp	/^  fd_set readfds;$/;"	m	struct:__anon1	file:
+selectInfo	src/TCPEchoServer-Select.cpp	/^} selectInfo;$/;"	t	typeref:struct:__anon1	file:
+timeout	src/TCPEchoServer-Select.cpp	/^  struct timeval timeout;$/;"	m	struct:__anon1	typeref:struct:__anon1::timeval	file:

@@ -1,0 +1,18 @@
+*   Trying 172.217.31.179:80...
+* TCP_NODELAY set
+* Connected to zipcloud.ibsnet.co.jp (172.217.31.179) port 80 (#0)
+> GET /api/search?zipcode=7830060 HTTP/1.1
+> Host: zipcloud.ibsnet.co.jp
+> User-Agent: curl/7.68.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Origin: *
+< Content-Type: text/plain;charset=utf-8
+< X-Cloud-Trace-Context: bd84c1c95c0daf426676743412157e8c
+< Date: Sun, 19 Jun 2022 16:12:41 GMT
+< Server: Google Frontend
+< Content-Length: 290
+< 
+* Connection #0 to host zipcloud.ibsnet.co.jp left intact
