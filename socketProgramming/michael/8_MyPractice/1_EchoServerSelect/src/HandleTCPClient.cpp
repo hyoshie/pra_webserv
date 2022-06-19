@@ -44,8 +44,10 @@ int RepeatClientMessage(int clntSock) {
     return 0;
   }
   echoBuffer[recvMsgSize] = '\0';
-  if (strstr(echoBuffer, "\r\n") != NULL) {
-    cerr << "find rn!" << endl;
+  //改行を削除
+  char *nlptr;
+  if ((nlptr = strstr(echoBuffer, "\r\n")) != NULL) {
+    *nlptr = '\0';
   }
   cerr << "recv: " << echoBuffer << endl;
   if (send(clntSock, echoBuffer, recvMsgSize, 0) != recvMsgSize) {
