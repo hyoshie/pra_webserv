@@ -11,7 +11,7 @@
 using namespace std;
 
 // static const int MAX_CLIENTS = 10;
-#define MAX_CLIENTS 10
+#define MAX_CLIENTS 2
 
 typedef struct {
   int maxfd;
@@ -68,7 +68,14 @@ int main(int argc, char *argv[]) {
 
       default:
         if (FD_ISSET(servSock, &selInfo.readfds)) {
-          clntSocks.push_back(AcceptTCPConeection(servSock));
+          int tmpSock;
+          tmpSock = AcceptTCPConeection(servSock);
+          if (clntSocks.size() >= MAX_CLIENTS) {
+            cerr << "refuse connection, server is full" << endl;
+            close(tmpSock);
+          } else {
+            clntSocks.push_back(tmpSock);
+          }
         }
         for (vector<int>::iterator it = clntSocks.begin(); it < clntSocks.end();
              it++) {
