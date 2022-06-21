@@ -3,13 +3,10 @@ CLIENT_NAME = client
 
 SRCS_DIR = ./src
 OBJS_DIR = ./obj
-BIN_DIR = ./bin
 
-SERVER_SRCS = AcceptTCPConeection.cpp \
-			  CreateTCPSocket.cpp \
-			  DieWithError.cpp \
-			  RepeatClientMessage.cpp \
-			  TCPEchoServer-Select.cpp \
+SERVER_SRCS = Server.cpp \
+			  Selector.cpp \
+			  main.cpp \
 			  $(NULL)
 
 
@@ -24,18 +21,26 @@ CLIENT_OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_SRCS:.cpp=.o)))
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	$(CXX) $(CFLAGS) -c $< -o $@
 
-all: $(SERVER_NAME) $(CLIENT_NAME)
+.PHONY: all
+all: $(OBJS_DIR) $(SERVER_NAME) $(CLIENT_NAME)
+
+$(OBJS_DIR):
+	mkdir $@
 
 $(SERVER_NAME): $(SERVER_OBJS)
-	$(CXX) $(CFLAGS) $(SERVER_OBJS) -o $(BIN_DIR)/$@
+	$(CXX) $(CFLAGS) $(SERVER_OBJS) -o $@
 
 $(CLIENT_NAME): $(CLIENT_OBJS)
-	$(CXX) $(CFLAGS) $(CLIENT_OBJS) -o $(BIN_DIR)/$@
+	$(CXX) $(CFLAGS) $(CLIENT_OBJS) -o $@
 
+.PHONY: clean
 clean:
 	$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
 
+.PHONY: fclean
 fclean: clean
-	$(RM) $(BIN_DIR)/$(SERVER_NAME)
-	$(RM) $(BIN_DIR)/$(CLIENT_NAME)
+	$(RM) $(SERVER_NAME)
+	$(RM) $(CLIENT_NAME)
+
+.PHONY: re
 re: fclean all

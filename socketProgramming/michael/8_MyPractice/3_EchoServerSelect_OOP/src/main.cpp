@@ -49,7 +49,6 @@ int main() {
   std::cout << YELLOW << "Welcome to EchoServer!" << RESET << std::endl;
 
   try {
-    // throw "hoge";
     eventLoop();
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
