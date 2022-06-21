@@ -1,20 +1,20 @@
+#include <exception>
+
 #include "Selector.hpp"
 #include "Server.hpp"
 #include "color.hpp"
 
-int main() {
-  std::cout << YELLOW << "Welcome to EchoServer!" << RESET << std::endl;
-
+void eventLoop() {
   Server serv;
-  Selector sel(serv.getAllSocketFd());
+  Selector selector(serv.getAllSocketFd());
 
   for (;;) {
-    sel.init(serv.getAllSocketFd());
-    int event_cnt = sel.monitor();
-    sel.showDebugInfo();
+    selector.init(serv.getAllSocketFd());
+    int event_cnt = selector.monitor();
+    selector.showDebugInfo();
 
     // accept
-    std::set<int> readablefds = sel.getReadyReadFds();
+    std::set<int> readablefds = selector.getReadyReadFds();
     if (readablefds.find(serv.getListenFd()) != readablefds.end()) {
       serv.accept();
     }
@@ -26,21 +26,32 @@ int main() {
       if (*it != serv.getListenFd()) {
         int recvMsgSize = serv.recvClientMessage(*it);
         if (recvMsgSize > 0) {
-          sel.addWriteFd(*it);
+          selector.addWriteFd(*it);
         } else {
-          sel.removeWriteFd(*it);
+          selector.removeWriteFd(*it);
           serv.close(*it);
         }
       }
     }
 
     // write
-    std::set<int> writablefds = sel.getReadyWriteFds();
+    std::set<int> writablefds = selector.getReadyWriteFds();
     it = writablefds.begin();
     ite = writablefds.end();
     for (; it != ite; it++) {
       int sendMsgSize = serv.sendMessage(*it);
-      sel.removeWriteFd(*it);
+      selector.removeWriteFd(*it);
     }
+  }
+}
+
+int main() {
+  std::cout << YELLOW << "Welcome to EchoServer!" << RESET << std::endl;
+
+  try {
+    // throw "hoge";
+    eventLoop();
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
   }
 }

@@ -7,6 +7,8 @@ Selector::Selector(std::set<int> readfds) {
 
 Selector::~Selector() {}
 
+// write_fdは初期化しない。基本readyになってしまうため。
+// 読み込んだ時のみfdを追加する。書き込んだあとはすぐ削除する。closeはしない
 void Selector::init(std::set<int> readfds) {
   target_readfds_ = readfds;
 
@@ -14,7 +16,6 @@ void Selector::init(std::set<int> readfds) {
   ite--;
   max_readfd_ = *ite;
   max_fd_ = *ite;
-  // write_fdは初期化しない。基本readyになってしまうため。読み込んだ時のみfdを追加する。書き込んだあとはすぐ削除する。closeはしない
 
   evnet_cnt_ = 0;
   timeout_.tv_sec = kTimeoutSec;
@@ -27,14 +28,15 @@ int Selector::monitor() {
 
   evnet_cnt_ =
       select(max_fd_ + 1, &tmp_readfds, &tmp_writefds, NULL, &timeout_);
-  ready_readfds_ = toSet(tmp_readfds, target_readfds_);
-  ready_writefds_ = toSet(tmp_writefds, target_writefds_);
+
   if (evnet_cnt_ < 0) {
-    DieWithError("select failed()");
+    throw std::runtime_error("select() failed");
   }
   if (evnet_cnt_ == 0) {
     std::cerr << "Time out, you had tea break?" << std::endl;
   }
+  ready_readfds_ = toSet(tmp_readfds, target_readfds_);
+  ready_writefds_ = toSet(tmp_writefds, target_writefds_);
   return evnet_cnt_;
 }
 
