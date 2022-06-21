@@ -1,0 +1,363 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AMATERIA_HPP	cpp04/ex03/AMateria.hpp	/^# define AMATERIA_HPP$/;"	d
+AMateria	cpp04/ex03/AMateria.cpp	/^AMateria::AMateria()$/;"	f	class:AMateria
+AMateria	cpp04/ex03/AMateria.cpp	/^AMateria::AMateria(const AMateria &other)$/;"	f	class:AMateria
+AMateria	cpp04/ex03/AMateria.cpp	/^AMateria::AMateria(std::string const & type) : _type(type)$/;"	f	class:AMateria
+AMateria	cpp04/ex03/AMateria.hpp	/^class AMateria$/;"	c
+ANIMAL_HPP	cpp04/ex00/Animal.hpp	/^# define ANIMAL_HPP$/;"	d
+ANIMAL_HPP	cpp04/ex01/Animal.hpp	/^# define ANIMAL_HPP$/;"	d
+ANIMAL_HPP	cpp04/ex02/Animal.hpp	/^# define ANIMAL_HPP$/;"	d
+ARRAY_SIZE	cpp04/ex01/test.hpp	/^static const int	ARRAY_SIZE = 4;$/;"	v
+ARRAY_SIZE	cpp04/ex02/test.hpp	/^static const int	ARRAY_SIZE = 4;$/;"	v
+AcceptTCPConeection	AcceptTCPConeection.cpp	/^int AcceptTCPConeection(int servSock) {$/;"	f
+Animal	cpp04/ex00/Animal.cpp	/^Animal::Animal(const Animal &other)$/;"	f	class:Animal
+Animal	cpp04/ex00/Animal.cpp	/^Animal::Animal(const std::string name) : _type(name)$/;"	f	class:Animal
+Animal	cpp04/ex00/Animal.hpp	/^class Animal {$/;"	c
+Animal	cpp04/ex01/Animal.cpp	/^Animal::Animal(const Animal &other)$/;"	f	class:Animal
+Animal	cpp04/ex01/Animal.cpp	/^Animal::Animal(const std::string name) : _type(name)$/;"	f	class:Animal
+Animal	cpp04/ex01/Animal.hpp	/^class Animal {$/;"	c
+Animal	cpp04/ex02/Animal.cpp	/^Animal::Animal(const Animal &other)$/;"	f	class:Animal
+Animal	cpp04/ex02/Animal.cpp	/^Animal::Animal(const std::string name) : _type(name)$/;"	f	class:Animal
+Animal	cpp04/ex02/Animal.hpp	/^class Animal {$/;"	c
+BLACK	cpp04/ex00/Color.hpp	/^# define BLACK /;"	d
+BLACK	cpp04/ex01/Color.hpp	/^# define BLACK /;"	d
+BLACK	cpp04/ex02/Color.hpp	/^# define BLACK /;"	d
+BLACK	cpp04/ex03/Color.hpp	/^# define BLACK /;"	d
+BLUE	color.hpp	/^#define BLUE /;"	d
+BLUE	cpp04/ex00/Color.hpp	/^# define BLUE /;"	d
+BLUE	cpp04/ex01/Color.hpp	/^# define BLUE /;"	d
+BLUE	cpp04/ex02/Color.hpp	/^# define BLUE /;"	d
+BLUE	cpp04/ex03/Color.hpp	/^# define BLUE /;"	d
+BOLD_UNDERLINE	cpp04/ex00/Color.hpp	/^# define BOLD_UNDERLINE /;"	d
+BOLD_UNDERLINE	cpp04/ex01/Color.hpp	/^# define BOLD_UNDERLINE /;"	d
+BOLD_UNDERLINE	cpp04/ex02/Color.hpp	/^# define BOLD_UNDERLINE /;"	d
+BOLD_UNDERLINE	cpp04/ex03/Color.hpp	/^# define BOLD_UNDERLINE /;"	d
+BRAIN_HPP	cpp04/ex01/Brain.hpp	/^# define BRAIN_HPP$/;"	d
+BRAIN_HPP	cpp04/ex02/Brain.hpp	/^# define BRAIN_HPP$/;"	d
+Brain	cpp04/ex01/Brain.cpp	/^Brain::Brain()$/;"	f	class:Brain
+Brain	cpp04/ex01/Brain.cpp	/^Brain::Brain(const Brain &other)$/;"	f	class:Brain
+Brain	cpp04/ex01/Brain.cpp	/^Brain::Brain(const std::string idea)$/;"	f	class:Brain
+Brain	cpp04/ex01/Brain.hpp	/^class Brain {$/;"	c
+Brain	cpp04/ex02/Brain.cpp	/^Brain::Brain()$/;"	f	class:Brain
+Brain	cpp04/ex02/Brain.cpp	/^Brain::Brain(const Brain &other)$/;"	f	class:Brain
+Brain	cpp04/ex02/Brain.cpp	/^Brain::Brain(const std::string idea)$/;"	f	class:Brain
+Brain	cpp04/ex02/Brain.hpp	/^class Brain {$/;"	c
+CAT_HPP	cpp04/ex00/Cat.hpp	/^# define CAT_HPP$/;"	d
+CAT_HPP	cpp04/ex01/Cat.hpp	/^# define CAT_HPP$/;"	d
+CAT_HPP	cpp04/ex02/Cat.hpp	/^# define CAT_HPP$/;"	d
+CHARACTER_HPP	cpp04/ex03/Character.hpp	/^# define CHARACTER_HPP$/;"	d
+COLOR_HPP	color.hpp	/^#define COLOR_HPP$/;"	d
+COLOR_HPP	cpp04/ex00/Color.hpp	/^# define COLOR_HPP$/;"	d
+COLOR_HPP	cpp04/ex01/Color.hpp	/^# define COLOR_HPP$/;"	d
+COLOR_HPP	cpp04/ex02/Color.hpp	/^# define COLOR_HPP$/;"	d
+COLOR_HPP	cpp04/ex03/Color.hpp	/^# define COLOR_HPP$/;"	d
+CURE_HPP	cpp04/ex03/Cure.hpp	/^# define CURE_HPP$/;"	d
+CXX	cpp04/ex00/Makefile	/^CXX			= c++$/;"	m
+CXX	cpp04/ex01/Makefile	/^CXX			= c++$/;"	m
+CXX	cpp04/ex02/Makefile	/^CXX			= c++$/;"	m
+CXX	cpp04/ex03/Makefile	/^CXX			= c++$/;"	m
+CXXFLAGS	cpp04/ex00/Makefile	/^CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic$/;"	m
+CXXFLAGS	cpp04/ex01/Makefile	/^CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic$/;"	m
+CXXFLAGS	cpp04/ex02/Makefile	/^CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic$/;"	m
+CXXFLAGS	cpp04/ex03/Makefile	/^CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic$/;"	m
+CYAN	color.hpp	/^#define CYAN /;"	d
+CYAN	cpp04/ex00/Color.hpp	/^# define CYAN /;"	d
+CYAN	cpp04/ex01/Color.hpp	/^# define CYAN /;"	d
+CYAN	cpp04/ex02/Color.hpp	/^# define CYAN /;"	d
+CYAN	cpp04/ex03/Color.hpp	/^# define CYAN /;"	d
+Cat	cpp04/ex00/Cat.cpp	/^Cat::Cat() : Animal("Cat")$/;"	f	class:Cat
+Cat	cpp04/ex00/Cat.cpp	/^Cat::Cat(const Cat &other)$/;"	f	class:Cat
+Cat	cpp04/ex00/Cat.hpp	/^class Cat : public Animal {$/;"	c
+Cat	cpp04/ex01/Cat.cpp	/^Cat::Cat() : Animal("Cat")$/;"	f	class:Cat
+Cat	cpp04/ex01/Cat.cpp	/^Cat::Cat(const Cat &other)$/;"	f	class:Cat
+Cat	cpp04/ex01/Cat.hpp	/^class Cat : public Animal {$/;"	c
+Cat	cpp04/ex02/Cat.cpp	/^Cat::Cat() : Animal("Cat")$/;"	f	class:Cat
+Cat	cpp04/ex02/Cat.cpp	/^Cat::Cat(const Cat &other)$/;"	f	class:Cat
+Cat	cpp04/ex02/Cat.hpp	/^class Cat : public Animal {$/;"	c
+Character	cpp04/ex03/Character.cpp	/^Character::Character() : _name("John Doe")$/;"	f	class:Character
+Character	cpp04/ex03/Character.cpp	/^Character::Character(const Character &other)$/;"	f	class:Character
+Character	cpp04/ex03/Character.cpp	/^Character::Character(std::string const & name) : _name(name)$/;"	f	class:Character
+Character	cpp04/ex03/Character.hpp	/^class Character : public ICharacter {$/;"	c
+CreateTCPServerSocket	CreateTCPSocket.cpp	/^int CreateTCPServerSocket(unsigned short port) {$/;"	f
+Cure	cpp04/ex03/Cure.cpp	/^Cure::Cure() : AMateria("cure")$/;"	f	class:Cure
+Cure	cpp04/ex03/Cure.cpp	/^Cure::Cure(const Cure &other)$/;"	f	class:Cure
+Cure	cpp04/ex03/Cure.hpp	/^class Cure : public AMateria {$/;"	c
+DOG_HPP	cpp04/ex00/Dog.hpp	/^# define DOG_HPP$/;"	d
+DOG_HPP	cpp04/ex01/Dog.hpp	/^# define DOG_HPP$/;"	d
+DOG_HPP	cpp04/ex02/Dog.hpp	/^# define DOG_HPP$/;"	d
+DieWithError	DieWithError.cpp	/^void DieWithError(const char *errorMessage) {$/;"	f
+Dog	cpp04/ex00/Dog.cpp	/^Dog::Dog() : Animal("Dog")$/;"	f	class:Dog
+Dog	cpp04/ex00/Dog.cpp	/^Dog::Dog(const Dog &other)$/;"	f	class:Dog
+Dog	cpp04/ex00/Dog.hpp	/^class Dog : public Animal {$/;"	c
+Dog	cpp04/ex01/Dog.cpp	/^Dog::Dog() : Animal("Dog")$/;"	f	class:Dog
+Dog	cpp04/ex01/Dog.cpp	/^Dog::Dog(const Dog &other)$/;"	f	class:Dog
+Dog	cpp04/ex01/Dog.hpp	/^class Dog : public Animal {$/;"	c
+Dog	cpp04/ex02/Dog.cpp	/^Dog::Dog() : Animal("Dog")$/;"	f	class:Dog
+Dog	cpp04/ex02/Dog.cpp	/^Dog::Dog(const Dog &other)$/;"	f	class:Dog
+Dog	cpp04/ex02/Dog.hpp	/^class Dog : public Animal {$/;"	c
+GREEN	color.hpp	/^#define GREEN /;"	d
+GREEN	cpp04/ex00/Color.hpp	/^# define GREEN /;"	d
+GREEN	cpp04/ex01/Color.hpp	/^# define GREEN /;"	d
+GREEN	cpp04/ex02/Color.hpp	/^# define GREEN /;"	d
+GREEN	cpp04/ex03/Color.hpp	/^# define GREEN /;"	d
+ICE_HPP	cpp04/ex03/Ice.hpp	/^# define ICE_HPP$/;"	d
+ICHARACTER_HPP	cpp04/ex03/ICharacter.hpp	/^# define ICHARACTER_HPP$/;"	d
+ICharacter	cpp04/ex03/ICharacter.hpp	/^class ICharacter {$/;"	c
+IMATERIASOURCE_HPP	cpp04/ex03/IMateriaSource.hpp	/^# define IMATERIASOURCE_HPP$/;"	d
+IMateriaSource	cpp04/ex03/IMateriaSource.hpp	/^class IMateriaSource {$/;"	c
+IWATCHER_HPP	IWatcher.hpp	/^#define IWATCHER_HPP$/;"	d
+IWatcher	IWatcher.hpp	/^class IWatcher {$/;"	c
+Ice	cpp04/ex03/Ice.cpp	/^Ice::Ice() : AMateria("ice")$/;"	f	class:Ice
+Ice	cpp04/ex03/Ice.cpp	/^Ice::Ice(const Ice &other)$/;"	f	class:Ice
+Ice	cpp04/ex03/Ice.hpp	/^class Ice : public AMateria {$/;"	c
+InitSelectInfo	TCPEchoServer-Select.cpp	/^void InitSelectInfo(selectInfo *selInfo, int servSock, vector<int> &clntSocks) {$/;"	f
+MAGENTA	color.hpp	/^#define MAGENTA /;"	d
+MAGENTA	cpp04/ex00/Color.hpp	/^# define MAGENTA /;"	d
+MAGENTA	cpp04/ex01/Color.hpp	/^# define MAGENTA /;"	d
+MAGENTA	cpp04/ex02/Color.hpp	/^# define MAGENTA /;"	d
+MAGENTA	cpp04/ex03/Color.hpp	/^# define MAGENTA /;"	d
+MATERIASOURCE_HPP	cpp04/ex03/MateriaSource.hpp	/^# define MATERIASOURCE_HPP$/;"	d
+MAXPENDING	CreateTCPSocket.cpp	/^#define MAXPENDING /;"	d	file:
+MAX_CLIENTS	TCPEchoServer-Select.cpp	/^#define MAX_CLIENTS /;"	d	file:
+MateriaSource	cpp04/ex03/MateriaSource.cpp	/^MateriaSource::MateriaSource()$/;"	f	class:MateriaSource
+MateriaSource	cpp04/ex03/MateriaSource.cpp	/^MateriaSource::MateriaSource(const MateriaSource &other)$/;"	f	class:MateriaSource
+MateriaSource	cpp04/ex03/MateriaSource.hpp	/^class MateriaSource : public IMateriaSource {$/;"	c
+NAME	cpp04/ex00/Makefile	/^NAME		= a.out$/;"	m
+NAME	cpp04/ex01/Makefile	/^NAME		= a.out$/;"	m
+NAME	cpp04/ex02/Makefile	/^NAME		= a.out$/;"	m
+NAME	cpp04/ex03/Makefile	/^NAME		= a.out$/;"	m
+OBJS	cpp04/ex00/Makefile	/^OBJS		= $(SRCS:.cpp=.o)$/;"	m
+OBJS	cpp04/ex01/Makefile	/^OBJS		= $(SRCS:.cpp=.o)$/;"	m
+OBJS	cpp04/ex02/Makefile	/^OBJS		= $(SRCS:.cpp=.o)$/;"	m
+OBJS	cpp04/ex03/Makefile	/^OBJS		= $(SRCS:.cpp=.o)$/;"	m
+RCVBUFSIZE	RepeatClientMessage.cpp	/^#define RCVBUFSIZE /;"	d	file:
+RCVBUFSIZE	TCPEchoClient.cpp	/^#define RCVBUFSIZE /;"	d	file:
+RED	color.hpp	/^#define RED /;"	d
+RED	cpp04/ex00/Color.hpp	/^# define RED /;"	d
+RED	cpp04/ex01/Color.hpp	/^# define RED /;"	d
+RED	cpp04/ex02/Color.hpp	/^# define RED /;"	d
+RED	cpp04/ex03/Color.hpp	/^# define RED /;"	d
+RESET	color.hpp	/^#define RESET /;"	d
+RESET	cpp04/ex00/Color.hpp	/^# define RESET /;"	d
+RESET	cpp04/ex01/Color.hpp	/^# define RESET /;"	d
+RESET	cpp04/ex02/Color.hpp	/^# define RESET /;"	d
+RESET	cpp04/ex03/Color.hpp	/^# define RESET /;"	d
+RepeatClientMessage	RepeatClientMessage.cpp	/^int RepeatClientMessage(int clntSock) {$/;"	f
+SELECTOR_HPP	Selector.hpp	/^#define SELECTOR_HPP$/;"	d
+SERVER_HPP	Server.hpp	/^#define SERVER_HPP$/;"	d
+SRCS	cpp04/ex00/Makefile	/^SRCS		= Animal.cpp\\$/;"	m
+SRCS	cpp04/ex01/Makefile	/^SRCS		= Animal.cpp\\$/;"	m
+SRCS	cpp04/ex02/Makefile	/^SRCS		= Animal.cpp\\$/;"	m
+SRCS	cpp04/ex03/Makefile	/^SRCS		= main.cpp\\$/;"	m
+Selector	Selector.cpp	/^Selector::Selector(std::set<int> readfds) {$/;"	f	class:Selector
+Selector	Selector.hpp	/^class Selector {$/;"	c
+Server	Server.cpp	/^Server::Server() {$/;"	f	class:Server
+Server	Server.hpp	/^class Server {$/;"	c
+TCPECHOSERVER_H	TCPEchoServer.h	/^#define TCPECHOSERVER_H$/;"	d
+TEST_HPP	cpp04/ex01/test.hpp	/^# define TEST_HPP$/;"	d
+TEST_HPP	cpp04/ex02/test.hpp	/^# define TEST_HPP$/;"	d
+TEST_HPP	cpp04/ex03/test.hpp	/^# define TEST_HPP$/;"	d
+UNDERLINE	cpp04/ex00/Color.hpp	/^# define UNDERLINE /;"	d
+UNDERLINE	cpp04/ex01/Color.hpp	/^# define UNDERLINE /;"	d
+UNDERLINE	cpp04/ex02/Color.hpp	/^# define UNDERLINE /;"	d
+UNDERLINE	cpp04/ex03/Color.hpp	/^# define UNDERLINE /;"	d
+WHITE	cpp04/ex00/Color.hpp	/^# define WHITE /;"	d
+WHITE	cpp04/ex01/Color.hpp	/^# define WHITE /;"	d
+WHITE	cpp04/ex02/Color.hpp	/^# define WHITE /;"	d
+WHITE	cpp04/ex03/Color.hpp	/^# define WHITE /;"	d
+WRONGANIMAL_HPP	cpp04/ex00/WrongAnimal.hpp	/^# define WRONGANIMAL_HPP$/;"	d
+WRONGCAT_HPP	cpp04/ex00/WrongCat.hpp	/^# define WRONGCAT_HPP$/;"	d
+WrongAnimal	cpp04/ex00/WrongAnimal.cpp	/^WrongAnimal::WrongAnimal(const WrongAnimal &other)$/;"	f	class:WrongAnimal
+WrongAnimal	cpp04/ex00/WrongAnimal.cpp	/^WrongAnimal::WrongAnimal(std::string name) : _type(name)$/;"	f	class:WrongAnimal
+WrongAnimal	cpp04/ex00/WrongAnimal.hpp	/^class WrongAnimal {$/;"	c
+WrongCat	cpp04/ex00/WrongCat.cpp	/^WrongCat::WrongCat() : WrongAnimal("WrongCat")$/;"	f	class:WrongCat
+WrongCat	cpp04/ex00/WrongCat.cpp	/^WrongCat::WrongCat(const WrongCat &other)$/;"	f	class:WrongCat
+WrongCat	cpp04/ex00/WrongCat.hpp	/^class WrongCat : public WrongAnimal {$/;"	c
+YELLOW	color.hpp	/^#define YELLOW /;"	d
+YELLOW	cpp04/ex00/Color.hpp	/^# define YELLOW /;"	d
+YELLOW	cpp04/ex01/Color.hpp	/^# define YELLOW /;"	d
+YELLOW	cpp04/ex02/Color.hpp	/^# define YELLOW /;"	d
+YELLOW	cpp04/ex03/Color.hpp	/^# define YELLOW /;"	d
+_brain	cpp04/ex01/Cat.hpp	/^		Brain*	_brain;$/;"	m	class:Cat
+_brain	cpp04/ex01/Dog.hpp	/^		Brain*	_brain;$/;"	m	class:Dog
+_brain	cpp04/ex02/Cat.hpp	/^		Brain*	_brain;$/;"	m	class:Cat
+_brain	cpp04/ex02/Dog.hpp	/^		Brain*	_brain;$/;"	m	class:Dog
+_idea	cpp04/ex01/Brain.hpp	/^		std::string					_idea[_kIdeaNum];$/;"	m	class:Brain
+_idea	cpp04/ex02/Brain.hpp	/^		std::string					_idea[_kIdeaNum];$/;"	m	class:Brain
+_kIdeaNum	cpp04/ex01/Brain.hpp	/^		static const unsigned int	_kIdeaNum = 100;$/;"	m	class:Brain
+_kIdeaNum	cpp04/ex02/Brain.hpp	/^		static const unsigned int	_kIdeaNum = 100;$/;"	m	class:Brain
+_kMateriaNum	cpp04/ex03/Character.hpp	/^		static const int	_kMateriaNum = 4;$/;"	m	class:Character
+_kMateriaNum	cpp04/ex03/MateriaSource.hpp	/^		static const int	_kMateriaNum = 4;$/;"	m	class:MateriaSource
+_materias	cpp04/ex03/Character.hpp	/^		AMateria*			_materias[_kMateriaNum];$/;"	m	class:Character
+_materias	cpp04/ex03/MateriaSource.hpp	/^		AMateria*			_materias[_kMateriaNum];$/;"	m	class:MateriaSource
+_name	cpp04/ex03/Character.hpp	/^		std::string			_name;$/;"	m	class:Character
+_type	cpp04/ex00/Animal.hpp	/^		std::string	_type;$/;"	m	class:Animal
+_type	cpp04/ex00/WrongAnimal.hpp	/^		std::string	_type;$/;"	m	class:WrongAnimal
+_type	cpp04/ex01/Animal.hpp	/^		std::string	_type;$/;"	m	class:Animal
+_type	cpp04/ex02/Animal.hpp	/^		std::string	_type;$/;"	m	class:Animal
+_type	cpp04/ex03/AMateria.hpp	/^		std::string	_type;$/;"	m	class:AMateria
+accept	Server.cpp	/^int Server::accept() {$/;"	f	class:Server
+addReadFd	Selector.cpp	/^void Selector::addReadFd(int fd) {$/;"	f	class:Selector
+addWriteFd	Selector.cpp	/^void Selector::addWriteFd(int fd) {$/;"	f	class:Selector
+clone	cpp04/ex03/Cure.cpp	/^AMateria*	Cure::clone() const$/;"	f	class:Cure
+clone	cpp04/ex03/Ice.cpp	/^AMateria*	Ice::clone() const$/;"	f	class:Ice
+close	Server.cpp	/^int Server::close(int fd) {$/;"	f	class:Server
+connected_fd_	Server.hpp	/^  std::set<int> connected_fd_;$/;"	m	class:Server
+createMateria	cpp04/ex03/MateriaSource.cpp	/^AMateria*	MateriaSource::createMateria(std::string const & type)$/;"	f	class:MateriaSource
+equip	cpp04/ex03/Character.cpp	/^void Character::equip(AMateria* m)$/;"	f	class:Character
+evnet_cnt_	Selector.hpp	/^  int evnet_cnt_;$/;"	m	class:Selector
+existsSameMateria	cpp04/ex03/Character.cpp	/^bool	Character::existsSameMateria(int idx)$/;"	f	class:Character
+existsSameMateria	cpp04/ex03/MateriaSource.cpp	/^bool	MateriaSource::existsSameMateria(int idx)$/;"	f	class:MateriaSource
+getAllSocketFd	Server.cpp	/^std::set<int> Server::getAllSocketFd() const {$/;"	f	class:Server
+getConnectedFd	Server.cpp	/^std::set<int> Server::getConnectedFd() const { return connected_fd_; }$/;"	f	class:Server
+getEventCount	Selector.cpp	/^int Selector::getEventCount() const { return evnet_cnt_; }$/;"	f	class:Selector
+getListenFd	Server.cpp	/^int Server::getListenFd() const { return listen_fd_; }$/;"	f	class:Server
+getMateriaNum	cpp04/ex03/Character.cpp	/^int	Character::getMateriaNum() const$/;"	f	class:Character
+getName	cpp04/ex03/Character.cpp	/^std::string const & Character::getName() const$/;"	f	class:std::Character
+getReadyReadFds	Selector.cpp	/^std::set<int> Selector::getReadyReadFds() const { return ready_readfds_; }$/;"	f	class:Selector
+getReadyWriteFds	Selector.cpp	/^std::set<int> Selector::getReadyWriteFds() const { return ready_writefds_; }$/;"	f	class:Selector
+getType	cpp04/ex00/Animal.cpp	/^const std::string	Animal::getType() const$/;"	f	class:Animal
+getType	cpp04/ex00/WrongAnimal.cpp	/^const std::string	WrongAnimal::getType() const$/;"	f	class:WrongAnimal
+getType	cpp04/ex01/Animal.cpp	/^const std::string	Animal::getType() const$/;"	f	class:Animal
+getType	cpp04/ex02/Animal.cpp	/^const std::string	Animal::getType() const$/;"	f	class:Animal
+getType	cpp04/ex03/AMateria.cpp	/^std::string const & AMateria::getType() const$/;"	f	class:std::AMateria
+init	Selector.cpp	/^void Selector::init(std::set<int> readfds) {$/;"	f	class:Selector
+kMaxPendig	Server.hpp	/^  const int kMaxPendig = 5;$/;"	m	class:Server
+kRecvBufferSize	Server.hpp	/^  const int kRecvBufferSize = 32;$/;"	m	class:Server
+kServerPort	Server.hpp	/^  const int kServerPort = 5000;$/;"	m	class:Server
+learnMateria	cpp04/ex03/MateriaSource.cpp	/^void	MateriaSource::learnMateria(AMateria* m)$/;"	f	class:MateriaSource
+listen_fd_	Server.hpp	/^  int listen_fd_;$/;"	m	class:Server
+main	TCPEchoClient.cpp	/^int main(int argc, char *argv[]) {$/;"	f
+main	TCPEchoServer-Select.cpp	/^int main(int argc, char *argv[]) {$/;"	f
+main	cpp04/ex00/main.cpp	/^int main(void)$/;"	f
+main	cpp04/ex01/main.cpp	/^int main(void)$/;"	f
+main	cpp04/ex02/main.cpp	/^int main(void)$/;"	f
+main	cpp04/ex03/main.cpp	/^int main(void)$/;"	f
+main	main.cpp	/^int main() {$/;"	f
+makeSound	cpp04/ex00/Animal.cpp	/^void	Animal::makeSound() const$/;"	f	class:Animal
+makeSound	cpp04/ex00/Cat.cpp	/^void	Cat::makeSound() const$/;"	f	class:Cat
+makeSound	cpp04/ex00/Dog.cpp	/^void	Dog::makeSound() const$/;"	f	class:Dog
+makeSound	cpp04/ex00/WrongAnimal.cpp	/^void	WrongAnimal::makeSound() const$/;"	f	class:WrongAnimal
+makeSound	cpp04/ex00/WrongCat.cpp	/^void	WrongCat::makeSound() const$/;"	f	class:WrongCat
+makeSound	cpp04/ex01/Animal.cpp	/^void	Animal::makeSound() const$/;"	f	class:Animal
+makeSound	cpp04/ex01/Cat.cpp	/^void	Cat::makeSound() const$/;"	f	class:Cat
+makeSound	cpp04/ex01/Dog.cpp	/^void	Dog::makeSound() const$/;"	f	class:Dog
+makeSound	cpp04/ex02/Cat.cpp	/^void	Cat::makeSound() const$/;"	f	class:Cat
+makeSound	cpp04/ex02/Dog.cpp	/^void	Dog::makeSound() const$/;"	f	class:Dog
+max_fd_	Selector.hpp	/^  int max_fd_;$/;"	m	class:Selector
+maxfd	TCPEchoServer-Select.cpp	/^  int maxfd;$/;"	m	struct:__anon1	file:
+monitor	Selector.cpp	/^int Selector::monitor() {$/;"	f	class:Selector
+operator =	cpp04/ex00/Animal.cpp	/^Animal &Animal::operator=(const Animal &other)$/;"	f	class:Animal
+operator =	cpp04/ex00/Cat.cpp	/^Cat &Cat::operator=(const Cat &other)$/;"	f	class:Cat
+operator =	cpp04/ex00/Dog.cpp	/^Dog &Dog::operator=(const Dog &other)$/;"	f	class:Dog
+operator =	cpp04/ex00/WrongAnimal.cpp	/^WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)$/;"	f	class:WrongAnimal
+operator =	cpp04/ex00/WrongCat.cpp	/^WrongCat &WrongCat::operator=(const WrongCat &other)$/;"	f	class:WrongCat
+operator =	cpp04/ex01/Animal.cpp	/^Animal &Animal::operator=(const Animal &other)$/;"	f	class:Animal
+operator =	cpp04/ex01/Brain.cpp	/^Brain &Brain::operator=(const Brain &other)$/;"	f	class:Brain
+operator =	cpp04/ex01/Cat.cpp	/^Cat &Cat::operator=(const Cat &other)$/;"	f	class:Cat
+operator =	cpp04/ex01/Dog.cpp	/^Dog &Dog::operator=(const Dog &other)$/;"	f	class:Dog
+operator =	cpp04/ex02/Animal.cpp	/^Animal &Animal::operator=(const Animal &other)$/;"	f	class:Animal
+operator =	cpp04/ex02/Brain.cpp	/^Brain &Brain::operator=(const Brain &other)$/;"	f	class:Brain
+operator =	cpp04/ex02/Cat.cpp	/^Cat &Cat::operator=(const Cat &other)$/;"	f	class:Cat
+operator =	cpp04/ex02/Dog.cpp	/^Dog &Dog::operator=(const Dog &other)$/;"	f	class:Dog
+operator =	cpp04/ex03/AMateria.cpp	/^AMateria &AMateria::operator=(const AMateria &other)$/;"	f	class:AMateria
+operator =	cpp04/ex03/Character.cpp	/^Character &Character::operator=(const Character &other)$/;"	f	class:Character
+operator =	cpp04/ex03/Cure.cpp	/^Cure &Cure::operator=(const Cure &other)$/;"	f	class:Cure
+operator =	cpp04/ex03/Ice.cpp	/^Ice &Ice::operator=(const Ice &other)$/;"	f	class:Ice
+operator =	cpp04/ex03/MateriaSource.cpp	/^MateriaSource &MateriaSource::operator=(const MateriaSource &other)$/;"	f	class:MateriaSource
+readfds	TCPEchoServer-Select.cpp	/^  fd_set readfds;$/;"	m	struct:__anon1	file:
+ready_readfds_	Selector.hpp	/^  std::set<int> ready_readfds_;$/;"	m	class:Selector
+ready_writefds_	Selector.hpp	/^  std::set<int> ready_writefds_;$/;"	m	class:Selector
+removeReadFd	Selector.cpp	/^void Selector::removeReadFd(int fd) {$/;"	f	class:Selector
+removeWriteFd	Selector.cpp	/^void Selector::removeWriteFd(int fd) {$/;"	f	class:Selector
+repeatClientMessage	Server.cpp	/^int Server::repeatClientMessage(int readable_fd) {$/;"	f	class:Server
+selectInfo	TCPEchoServer-Select.cpp	/^} selectInfo;$/;"	t	typeref:struct:__anon1	file:
+setIdea	cpp04/ex01/Brain.cpp	/^void	Brain::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Brain
+setIdea	cpp04/ex01/Cat.cpp	/^void	Cat::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Cat
+setIdea	cpp04/ex01/Dog.cpp	/^void	Dog::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Dog
+setIdea	cpp04/ex02/Brain.cpp	/^void	Brain::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Brain
+setIdea	cpp04/ex02/Cat.cpp	/^void	Cat::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Cat
+setIdea	cpp04/ex02/Dog.cpp	/^void	Dog::setIdea(unsigned int i, const std::string idea)$/;"	f	class:Dog
+showAddress	cpp04/ex01/Cat.cpp	/^void	Cat::showAddress() const$/;"	f	class:Cat
+showAddress	cpp04/ex01/Dog.cpp	/^void	Dog::showAddress() const$/;"	f	class:Dog
+showAddress	cpp04/ex02/Cat.cpp	/^void	Cat::showAddress() const$/;"	f	class:Cat
+showAddress	cpp04/ex02/Dog.cpp	/^void	Dog::showAddress() const$/;"	f	class:Dog
+showAllIdea	cpp04/ex01/Brain.cpp	/^void	Brain::showAllIdea() const$/;"	f	class:Brain
+showAllIdea	cpp04/ex01/Cat.cpp	/^void	Cat::showAllIdea() const$/;"	f	class:Cat
+showAllIdea	cpp04/ex01/Dog.cpp	/^void	Dog::showAllIdea() const$/;"	f	class:Dog
+showAllIdea	cpp04/ex02/Brain.cpp	/^void	Brain::showAllIdea() const$/;"	f	class:Brain
+showAllIdea	cpp04/ex02/Cat.cpp	/^void	Cat::showAllIdea() const$/;"	f	class:Cat
+showAllIdea	cpp04/ex02/Dog.cpp	/^void	Dog::showAllIdea() const$/;"	f	class:Dog
+target_readfds_	Selector.hpp	/^  std::set<int> target_readfds_;$/;"	m	class:Selector
+target_writefds_	Selector.hpp	/^  std::set<int> target_writefds_;$/;"	m	class:Selector
+test2CharacterUse1Materia	cpp04/ex03/test.cpp	/^void	test2CharacterUse1Materia()$/;"	f
+testAnimalArray	cpp04/ex01/test.cpp	/^void	testAnimalArray()$/;"	f
+testAnimals	cpp04/ex00/main.cpp	/^void	testAnimals()$/;"	f
+testBrain	cpp04/ex01/test.cpp	/^void	testBrain()$/;"	f
+testBrain	cpp04/ex02/test.cpp	/^void	testBrain()$/;"	f
+testCat3Constructor	cpp04/ex01/test.cpp	/^void	testCat3Constructor()$/;"	f
+testCatBrain	cpp04/ex01/test.cpp	/^void	testCatBrain()$/;"	f
+testCatBrain	cpp04/ex02/test.cpp	/^void	testCatBrain()$/;"	f
+testCharacter	cpp04/ex03/test.cpp	/^void	testCharacter()$/;"	f
+testCharacterHasSameMateria	cpp04/ex03/test.cpp	/^void	testCharacterHasSameMateria()$/;"	f
+testCorrect	cpp04/ex00/main.cpp	/^void	testCorrect()$/;"	f
+testCreateMateria	cpp04/ex03/test.cpp	/^void	testCreateMateria()$/;"	f
+testCureClass	cpp04/ex03/test.cpp	/^void	testCureClass()$/;"	f
+testDeepCopyWithAddress	cpp04/ex01/test.cpp	/^void	testDeepCopyWithAddress()$/;"	f
+testDeepCopyWithAddress	cpp04/ex02/test.cpp	/^void	testDeepCopyWithAddress()$/;"	f
+testDeepCopyWithBrainData	cpp04/ex01/test.cpp	/^void	testDeepCopyWithBrainData()$/;"	f
+testDeepCopyWithBrainData	cpp04/ex02/test.cpp	/^void	testDeepCopyWithBrainData()$/;"	f
+testDifferentTypeArray	cpp04/ex01/test.cpp	/^void	testDifferentTypeArray()$/;"	f
+testDifferentTypeArray	cpp04/ex02/test.cpp	/^void	testDifferentTypeArray()$/;"	f
+testDog3Constructor	cpp04/ex01/test.cpp	/^void	testDog3Constructor()$/;"	f
+testDogArray	cpp04/ex01/test.cpp	/^void	testDogArray()$/;"	f
+testDogArray	cpp04/ex02/test.cpp	/^void	testDogArray()$/;"	f
+testDogBrain	cpp04/ex01/test.cpp	/^void	testDogBrain()$/;"	f
+testDogBrain	cpp04/ex02/test.cpp	/^void	testDogBrain()$/;"	f
+testEquip	cpp04/ex03/test.cpp	/^void	testEquip()$/;"	f
+testIceClass	cpp04/ex03/test.cpp	/^void	testIceClass()$/;"	f
+testLearnMateria	cpp04/ex03/test.cpp	/^void	testLearnMateria()$/;"	f
+testMareiaSource	cpp04/ex03/test.cpp	/^void	testMareiaSource()$/;"	f
+testSubject	cpp04/ex03/test.cpp	/^void	testSubject()$/;"	f
+testSubjectRequired	cpp04/ex01/test.cpp	/^void	testSubjectRequired()$/;"	f
+testSubjectRequired	cpp04/ex02/test.cpp	/^void	testSubjectRequired()$/;"	f
+testUnequip	cpp04/ex03/test.cpp	/^void	testUnequip()$/;"	f
+testUse	cpp04/ex03/test.cpp	/^void	testUse()$/;"	f
+testWrong	cpp04/ex00/main.cpp	/^void	testWrong()$/;"	f
+timeout	TCPEchoServer-Select.cpp	/^  struct timeval timeout;$/;"	m	struct:__anon1	typeref:struct:__anon1::timeval	file:
+timeout_	Selector.hpp	/^  struct timeval timeout_;$/;"	m	class:Selector	typeref:struct:Selector::timeval
+toFdset	Selector.cpp	/^fd_set Selector::toFdset(std::set<int> cont_fds) {$/;"	f	class:Selector
+toSet	Selector.cpp	/^std::set<int> Selector::toSet(fd_set fds, std::set<int> cont_fds) {$/;"	f	class:Selector
+unequip	cpp04/ex03/Character.cpp	/^void Character::unequip(int idx)$/;"	f	class:Character
+use	cpp04/ex03/AMateria.cpp	/^void	AMateria::use(ICharacter& target)$/;"	f	class:AMateria
+use	cpp04/ex03/Character.cpp	/^void Character::use(int idx, ICharacter& target)$/;"	f	class:Character
+use	cpp04/ex03/Cure.cpp	/^void	Cure::use(ICharacter& target)$/;"	f	class:Cure
+use	cpp04/ex03/Ice.cpp	/^void	Ice::use(ICharacter& target)$/;"	f	class:Ice
+validate_index	cpp04/ex03/Character.cpp	/^bool	Character::validate_index(int idx)$/;"	f	class:Character
+~AMateria	cpp04/ex03/AMateria.cpp	/^AMateria::~AMateria()$/;"	f	class:AMateria
+~Animal	cpp04/ex00/Animal.cpp	/^Animal::~Animal()$/;"	f	class:Animal
+~Animal	cpp04/ex01/Animal.cpp	/^Animal::~Animal()$/;"	f	class:Animal
+~Animal	cpp04/ex02/Animal.cpp	/^Animal::~Animal()$/;"	f	class:Animal
+~Brain	cpp04/ex01/Brain.cpp	/^Brain::~Brain()$/;"	f	class:Brain
+~Brain	cpp04/ex02/Brain.cpp	/^Brain::~Brain()$/;"	f	class:Brain
+~Cat	cpp04/ex00/Cat.cpp	/^Cat::~Cat()$/;"	f	class:Cat
+~Cat	cpp04/ex01/Cat.cpp	/^Cat::~Cat()$/;"	f	class:Cat
+~Cat	cpp04/ex02/Cat.cpp	/^Cat::~Cat()$/;"	f	class:Cat
+~Character	cpp04/ex03/Character.cpp	/^Character::~Character()$/;"	f	class:Character
+~Cure	cpp04/ex03/Cure.cpp	/^Cure::~Cure()$/;"	f	class:Cure
+~Dog	cpp04/ex00/Dog.cpp	/^Dog::~Dog()$/;"	f	class:Dog
+~Dog	cpp04/ex01/Dog.cpp	/^Dog::~Dog()$/;"	f	class:Dog
+~Dog	cpp04/ex02/Dog.cpp	/^Dog::~Dog()$/;"	f	class:Dog
+~ICharacter	cpp04/ex03/ICharacter.hpp	/^		virtual ~ICharacter() {}$/;"	f	class:ICharacter
+~IMateriaSource	cpp04/ex03/IMateriaSource.hpp	/^		virtual	~IMateriaSource() {}$/;"	f	class:IMateriaSource
+~Ice	cpp04/ex03/Ice.cpp	/^Ice::~Ice()$/;"	f	class:Ice
+~MateriaSource	cpp04/ex03/MateriaSource.cpp	/^MateriaSource::~MateriaSource()$/;"	f	class:MateriaSource
+~Selector	Selector.cpp	/^Selector::~Selector() {}$/;"	f	class:Selector
+~Server	Server.cpp	/^Server::~Server() {$/;"	f	class:Server
+~WrongAnimal	cpp04/ex00/WrongAnimal.cpp	/^WrongAnimal::~WrongAnimal()$/;"	f	class:WrongAnimal
+~WrongCat	cpp04/ex00/WrongCat.cpp	/^WrongCat::~WrongCat()$/;"	f	class:WrongCat
