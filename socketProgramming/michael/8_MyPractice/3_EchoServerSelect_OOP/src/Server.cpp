@@ -37,6 +37,7 @@ Server::~Server() {
 }
 
 int Server::getListenFd() const { return listen_fd_; }
+
 std::set<int> Server::getConnectedFd() const { return connected_fd_; }
 
 std::set<int> Server::getAllSocketFd() const {
@@ -55,8 +56,8 @@ int Server::accept() {
   }
   connected_fd_.insert(tmp_socket);
   //クライアントの数のバリデーション
-  std::cout << "socket(fd):" << tmp_socket << ", "
-            << "total:" << connected_fd_.size() << std::endl;
+  std::cout << "accept: fd(" << tmp_socket << "), "
+            << "total connection:" << connected_fd_.size() << std::endl;
   return tmp_socket;
 }
 
@@ -70,12 +71,10 @@ int Server::close(int fd) {
   return ret;
 }
 
-int Server::repeatClientMessage(int readable_fd) {
-  char echoBuffer[kRecvBufferSize + 1];
+int Server::recvClientMessage(int readable_fd) {
   int recvMsgSize;
 
-  std::cout << "Handle fd: " << readable_fd << std::endl;
-  recvMsgSize = recv(readable_fd, echoBuffer, kRecvBufferSize, 0);
+  recvMsgSize = recv(readable_fd, buffer_[readable_fd], kRecvBufferSize, 0);
   if (recvMsgSize < 0) {
     DieWithError("recv() failed");
   }
@@ -83,16 +82,18 @@ int Server::repeatClientMessage(int readable_fd) {
     std::cerr << "recv: EOF" << std::endl;
     return 0;
   }
-  echoBuffer[recvMsgSize] = '\0';
-  //改行を削除
-  char *nlptr;
-  if ((nlptr = strstr(echoBuffer, "\r\n")) != NULL) {
-    *nlptr = '\0';
-  }
-  std::cerr << "recv: " << echoBuffer << std::endl;
-  if (send(readable_fd, echoBuffer, recvMsgSize, 0) != recvMsgSize) {
+  buffer_[readable_fd][recvMsgSize] = '\0';
+  std::cerr << "recv from fd(" << readable_fd << "): " << buffer_[readable_fd]
+            << std::endl;
+
+  return recvMsgSize;
+}
+
+int Server::sendMessage(int writable_fd) {
+  // char message[] = "42tokyo\n";
+  if (send(writable_fd, buffer_[writable_fd], strlen(buffer_[writable_fd]),
+           0) != strlen(buffer_[writable_fd])) {
     DieWithError("send() failed");
   }
-  // close(readable_fd);
-  return recvMsgSize;
+  return 0;
 }

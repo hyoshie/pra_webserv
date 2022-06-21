@@ -10,6 +10,8 @@
 #include <iostream>
 #include <set>
 
+#include "color.hpp"
+
 void DieWithError(const char* message);
 
 class Server {
@@ -22,7 +24,8 @@ class Server {
   std::set<int> getAllSocketFd() const;
   int accept();
   int close(int fd);
-  int repeatClientMessage(int readable_fd);  //接続を切るかは後で考える
+  int recvClientMessage(int readable_fd);
+  int sendMessage(int writable_fd);
 
  private:
   // not copy
@@ -30,12 +33,14 @@ class Server {
   Server& operator=(const Server& other);
 
  private:
+  const int kServerPort = 5000;
+  static const int kMaxPendig = 5;
+  static const int kRecvBufferSize = 32;
+  static const int kMaxConnection = 32;
+
   int listen_fd_;
   std::set<int> connected_fd_;
-
-  const int kServerPort = 5000;
-  const int kMaxPendig = 5;
-  const int kRecvBufferSize = 32;
+  char buffer_[kMaxConnection][kRecvBufferSize + 1];
 };
 
 #endif /* SERVER_HPP */

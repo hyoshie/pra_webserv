@@ -1,6 +1,9 @@
 #include "Selector.hpp"
 
-Selector::Selector(std::set<int> readfds) { init(readfds); }
+Selector::Selector(std::set<int> readfds) {
+  init(readfds);
+  max_writefd_ = -1;
+}
 
 Selector::~Selector() {}
 
@@ -9,10 +12,12 @@ void Selector::init(std::set<int> readfds) {
 
   std::set<int>::iterator ite = target_readfds_.end();
   ite--;
+  max_readfd_ = *ite;
   max_fd_ = *ite;
+  // write_fdは初期化しない。基本readyになってしまうため。読み込んだ時のみfdを追加する。書き込んだあとはすぐ削除する。closeはしない
 
   evnet_cnt_ = 0;
-  timeout_.tv_sec = 10;
+  timeout_.tv_sec = kTimeoutSec;
   timeout_.tv_usec = 0;
 }
 
@@ -21,17 +26,15 @@ int Selector::monitor() {
   fd_set tmp_writefds = toFdset(target_writefds_);
 
   evnet_cnt_ =
-      // select(max_fd_ + 1, &tmp_readfds, &tmp_writefds, NULL, &timeout_);
-      select(max_fd_ + 1, &tmp_readfds, NULL, NULL, &timeout_);
+      select(max_fd_ + 1, &tmp_readfds, &tmp_writefds, NULL, &timeout_);
   ready_readfds_ = toSet(tmp_readfds, target_readfds_);
+  ready_writefds_ = toSet(tmp_writefds, target_writefds_);
   if (evnet_cnt_ < 0) {
     DieWithError("select failed()");
   }
   if (evnet_cnt_ == 0) {
     std::cerr << "Time out, you had tea break?" << std::endl;
   }
-
-  // ready_writefds_ = toSet(tmp_writefds, target_writefds_);
   return evnet_cnt_;
 }
 
@@ -43,6 +46,9 @@ std::set<int> Selector::getReadyWriteFds() const { return ready_writefds_; }
 
 void Selector::addReadFd(int fd) {
   target_readfds_.insert(fd);
+  if (fd > max_readfd_) {
+    max_readfd_ = fd;
+  }
   if (fd > max_fd_) {
     max_fd_ = fd;
   }
@@ -50,6 +56,9 @@ void Selector::addReadFd(int fd) {
 
 void Selector::addWriteFd(int fd) {
   target_writefds_.insert(fd);
+  if (fd > max_writefd_) {
+    max_writefd_ = fd;
+  }
   if (fd > max_fd_) {
     max_fd_ = fd;
   }
@@ -57,30 +66,39 @@ void Selector::addWriteFd(int fd) {
 
 void Selector::removeReadFd(int fd) {
   target_readfds_.erase(fd);
-  if (fd == max_fd_) {
-    std::set<int>::iterator itr = target_readfds_.end();
-    // std::set<int>::iterator itw = target_writefds_.end();
-    itr--;
-    // itw--;
-    // max_fd_ = (*itr > *itw) ? *itr : *itw;
-    max_fd_ = *itr;
+  if (target_readfds_.size() == 0) {
+    max_readfd_ = -1;
+  } else {
+    if (fd == max_readfd_) {
+      std::set<int>::iterator itr = target_readfds_.end();
+      itr--;
+      max_readfd_ = *itr;
+    }
   }
+  max_fd_ = (max_readfd_ > max_writefd_) ? max_readfd_ : max_writefd_;
 }
 
 void Selector::removeWriteFd(int fd) {
   target_writefds_.erase(fd);
-  // if (fd == max_fd_) {
-  //   std::set<int>::iterator itr = target_readfds_.end();
-  //   std::set<int>::iterator itw = target_writefds_.end();
-  //   itr--;
-  //   itw--;
-  // }
+  if (target_writefds_.size() == 0) {
+    max_writefd_ = -1;
+  } else {
+    if (fd == max_writefd_) {
+      std::set<int>::iterator itr = target_writefds_.end();
+      itr--;
+      max_writefd_ = *itr;
+    }
+  }
+  max_fd_ = (max_readfd_ > max_writefd_) ? max_readfd_ : max_writefd_;
 }
 
 fd_set Selector::toFdset(std::set<int> cont_fds) {
   fd_set fds;
 
   FD_ZERO(&fds);
+  if (cont_fds.size() == 0) {
+    return fds;
+  }
   std::set<int>::iterator it = cont_fds.begin();
   std::set<int>::iterator ite = cont_fds.end();
   for (; it != ite; it++) {
@@ -106,6 +124,7 @@ void printSetInfo(std::set<int> fds) {
   std::set<int>::iterator it = fds.begin();
   std::set<int>::iterator ite = fds.end();
 
+  std::cerr << "size[" << fds.size() << "] ";
   for (; it != ite; it++) {
     std::cerr << *it << ", ";
   }
@@ -115,11 +134,17 @@ void printSetInfo(std::set<int> fds) {
 void Selector::showDebugInfo() const {
   std::cerr << std::endl;
   std::cerr << "###Selecter Info###" << std::endl
-            << "max_fd: " << max_fd_ << std::endl
+            << "max_fd : " << max_fd_ << std::endl
+            << "max_rfd: " << max_readfd_ << std::endl
+            << "max_wfd: " << max_writefd_ << std::endl
             << "evnet_cnt: " << evnet_cnt_ << std::endl;
-  std::cerr << "ready_readfds: ";
+  std::cerr << "target_readfds : ";
+  printSetInfo(target_readfds_);
+  std::cerr << "ready_readfds  : ";
   printSetInfo(ready_readfds_);
-  std::cerr << "ready_writefds: ";
+  std::cerr << "target_writefds: ";
+  printSetInfo(target_writefds_);
+  std::cerr << "ready_writefds : ";
   printSetInfo(ready_writefds_);
   std::cerr << "###end###" << std::endl;
   std::cerr << std::endl;

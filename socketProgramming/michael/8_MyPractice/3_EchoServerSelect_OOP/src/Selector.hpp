@@ -33,6 +33,9 @@ class Selector {
 
  private:
   int max_fd_;
+  int max_readfd_;
+  int max_writefd_;
+
   struct timeval timeout_;
   std::set<int> target_readfds_;
   std::set<int> target_writefds_;
@@ -40,6 +43,8 @@ class Selector {
   int evnet_cnt_;
   std::set<int> ready_readfds_;
   std::set<int> ready_writefds_;
+
+  static const int kTimeoutSec = 5;
 
  private:
   Selector();
