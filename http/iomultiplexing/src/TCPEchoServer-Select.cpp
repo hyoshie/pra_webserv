@@ -12,18 +12,15 @@ using namespace std;
 
 // static const int MAX_CLIENTS = 10;
 #define MAX_CLIENTS 2
-#define RCVBUFSIZE 32
 
 typedef struct {
   int maxfd;
   fd_set readfds;
-  fd_set writefds;
   struct timeval timeout;
 } selectInfo;
 
 void InitSelectInfo(selectInfo *selInfo, int servSock, vector<int> &clntSocks) {
   FD_ZERO(&selInfo->readfds);
-  FD_ZERO(&selInfo->writefds);
   FD_SET(servSock, &selInfo->readfds);
   selInfo->maxfd = servSock;
 
@@ -31,7 +28,6 @@ void InitSelectInfo(selectInfo *selInfo, int servSock, vector<int> &clntSocks) {
   for (vector<int>::iterator it = clntSocks.begin(); it < clntSocks.end();
        it++) {
     FD_SET(*it, &selInfo->readfds);
-    FD_SET(*it, &selInfo->writefds);
     if (*it > selInfo->maxfd) {
       selInfo->maxfd = *it;
       clntCount++;
@@ -43,18 +39,10 @@ void InitSelectInfo(selectInfo *selInfo, int servSock, vector<int> &clntSocks) {
   selInfo->timeout.tv_usec = 0;
 }
 
-void PrintSelectReturn(int eventcnt, selectInfo selInfo) {
-  int readablefd_cnt;
-  int writablefd_cnt;
-
-  cerr << "##pass select##" << endl << "Ret Val: " << eventcnt << endl;
-}
-
 int main(int argc, char *argv[]) {
   int servSock;
   vector<int> clntSocks;
   unsigned short echoServPort;
-  char echoBuffer[256][RCVBUFSIZE + 1];
 
   if (argc != 2) {
     fprintf(stderr, "Usage: %s <Server Port>", argv[0]);
@@ -65,16 +53,11 @@ int main(int argc, char *argv[]) {
 
   servSock = CreateTCPServerSocket(echoServPort);
 
-  for (int i = 0; i < 256; i++) {
-    echoBuffer[i][0] = '\0';
-  }
-
   for (;;) {
     selectInfo selInfo;
     InitSelectInfo(&selInfo, servSock, clntSocks);
-    int eventcnt = select(selInfo.maxfd + 1, &selInfo.readfds,
-                          &selInfo.writefds, NULL, &selInfo.timeout);
-    switch (eventcnt) {
+    switch (select(selInfo.maxfd + 1, &selInfo.readfds, NULL, NULL,
+                   &selInfo.timeout)) {
       case -1:
         DieWithError("select() failed");
         break;
@@ -84,9 +67,7 @@ int main(int argc, char *argv[]) {
         break;
 
       default:
-        cerr << "select: " << eventcnt << endl;
         if (FD_ISSET(servSock, &selInfo.readfds)) {
-          cerr << "New connection" << endl;
           int tmpSock;
           tmpSock = AcceptTCPConeection(servSock);
           if (clntSocks.size() >= MAX_CLIENTS) {
@@ -96,38 +77,20 @@ int main(int argc, char *argv[]) {
             clntSocks.push_back(tmpSock);
           }
         }
-        //書き込み準備ができたソケットへバイト列を書き込む
-        for (vector<int>::iterator it = clntSocks.begin(); it < clntSocks.end();
-             it++) {
-          if (FD_ISSET(*it, &selInfo.writefds)) {
-            cerr << "Write Event" << endl;
-            // int ret;
-            // ret = SendMessage(*it, echoBuffer[*it]);
-            // char str[] = "42tokyo\n";
-            // printf("[echoBuffer[*it]]%s\n", echoBuffer[*it]);
-            // ret = SendMessage(*it, str);
-            // echoBuffer[*it][0] = '\0';
-            // close(*it);
-            // clntSocks.erase(it);
-          }
-        }
-        //読み込み準備ができたソケットからバイト列を読み取る
-        // FD_ZERO(&selInfo.writefds);
         for (vector<int>::iterator it = clntSocks.begin(); it < clntSocks.end();
              it++) {
           if (FD_ISSET(*it, &selInfo.readfds)) {
-            cerr << "Read Event" << endl;
             int ret;
-            ret = RecvMessage(*it, echoBuffer[*it]);
-            if (ret == 0) {
-              cerr << "EOF!!!" << endl;
-              // FD_SET(*it, &selInfo.writefds);
+            ret = RepeatClientMessage(*it);
+            if (ret <= 0) {
+              close(*it);
+              clntSocks.erase(it);
             }
           }
         }
     }
-    // not reach
   }
+  // not reach
 }
 
 // 0.無限ループ

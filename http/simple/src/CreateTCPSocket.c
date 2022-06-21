@@ -21,6 +21,13 @@ int	CreateTCPServerSocket(unsigned short port)
 	echoServAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	echoServAddr.sin_port = htons(port);
 
+	//ソケットオプション（再利用フラグ）を設定
+	int opt = 1;
+	if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&opt, sizeof(int)) <
+			0) {
+		DieWithError("setsockopt failed()");
+	}
+
 	//Bind local address
 	if (bind(sock, (struct sockaddr *)&echoServAddr, sizeof(echoServAddr)) < 0)
 		DieWithError("bind() failed");
