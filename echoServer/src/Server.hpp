@@ -19,18 +19,15 @@ class Server {
   Server();
   ~Server();
 
-  int getListenFd() const;
-  std::set<int> getConnectedFd() const;
-  std::set<int> getAllSocketFd() const;
   int accept();
   int close(int fd);
   int recvClientMessage(int readable_fd);
   int sendMessage(int writable_fd);
 
- private:
-  // not copy
-  Server(const Server& other);
-  Server& operator=(const Server& other);
+  //アクセッサー
+  int getListenFd() const;
+  const std::set<int>& getConnectedFd() const;
+  const std::set<int>& getAllSocketFd() const;
 
  private:
   static const int kServerPortBase = 5000;
@@ -38,8 +35,13 @@ class Server {
   static const int kRecvBufferSize = 32;
   static const int kMaxConnection = 32;
 
+  // not copy
+  Server(const Server& other);
+  Server& operator=(const Server& other);
+
   int listen_fd_;
   std::set<int> connected_fd_;
+  std::set<int> all_socket_fd_;
   char buffer_[kMaxConnection][kRecvBufferSize + 1];
 };
 

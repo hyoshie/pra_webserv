@@ -7,8 +7,6 @@
 #include <iostream>
 #include <set>
 
-void DieWithError(const char* errorMessage);
-
 class Selector {
  public:
   Selector(std::set<int> readfds);
@@ -16,40 +14,38 @@ class Selector {
 
   void init(std::set<int> readfds);
   int monitor();
-  void addReadFd(int fd);
-  void addWriteFd(int fd);
-  void removeReadFd(int fd);
-  void removeWriteFd(int fd);
-  fd_set toFdset(std::set<int> cont_fds);
-  std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
+  void addTargetReadFd(int fd);
+  void addTargetWriteFd(int fd);
+  void removeTargetReadFd(int fd);
+  void removeTargetWriteFd(int fd);
 
   //アクセッサー
   int getEventCount() const;
-  std::set<int> getReadyReadFds() const;
-  std::set<int> getReadyWriteFds() const;
-
+  const std::set<int>& getReadyReadFds() const;
+  const std::set<int>& getReadyWriteFds() const;
   //デバッグ用
   void showDebugInfo() const;
 
  private:
-  int max_fd_;
-  int max_readfd_;
-  int max_writefd_;
-
-  struct timeval timeout_;
-  std::set<int> target_readfds_;
-  std::set<int> target_writefds_;
-
-  int evnet_cnt_;
-  std::set<int> ready_readfds_;
-  std::set<int> ready_writefds_;
-
   static const int kTimeoutSec = 5;
 
- private:
+  // not use
   Selector();
   Selector(const Selector& other);
   Selector& operator=(const Selector& other);
+
+  fd_set toFdset(std::set<int> cont_fds);
+  std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
+
+  int evnet_cnt_;
+  int max_targetfd_;
+  int max_target_readfd_;
+  int max_target_writefd_;
+  struct timeval timeout_;
+  std::set<int> target_readfds_;
+  std::set<int> target_writefds_;
+  std::set<int> ready_readfds_;
+  std::set<int> ready_writefds_;
 };
 
 #endif /* SELECTOR_HPP */

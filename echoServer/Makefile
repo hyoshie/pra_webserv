@@ -1,6 +1,9 @@
 SERVER_NAME = server
 CLIENT_NAME = client
 
+CFLAGS = -g -Wall -Werror -Wextra
+# CFLAGS = -g
+
 SRCS_DIR = ./src
 OBJS_DIR = ./obj
 
