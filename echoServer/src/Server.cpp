@@ -12,7 +12,7 @@ Server::Server() {
   memset(&server_addr, 0, sizeof(server_addr));
   server_addr.sin_family = AF_INET;
   server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-  server_addr.sin_port = htons(kServerPort);
+  server_addr.sin_port = htons(kServerPortBase);
 
   int opt = 1;
   if (setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, (char *)&opt,

@@ -4,6 +4,10 @@
 #include "Server.hpp"
 #include "color.hpp"
 
+int main() {
+  ;
+  ;
+}
 void eventLoop() {
   Server serv;
   Selector selector(serv.getAllSocketFd());

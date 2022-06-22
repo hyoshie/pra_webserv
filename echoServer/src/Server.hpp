@@ -33,7 +33,7 @@ class Server {
   Server& operator=(const Server& other);
 
  private:
-  const int kServerPort = 5000;
+  static const int kServerPortBase = 5000;
   static const int kMaxPendig = 5;
   static const int kRecvBufferSize = 32;
   static const int kMaxConnection = 32;
