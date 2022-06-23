@@ -26,7 +26,6 @@ class Server {
 
   // アクセッサー
   int getListenFd() const;
-  const std::set<int>& getConnectedFd() const;
   const std::set<int>& getAllSocketFd() const;
 
  private:
@@ -40,7 +39,6 @@ class Server {
   Server& operator=(const Server& other);
 
   int listen_fd_;
-  std::set<int> connected_fd_;
   std::set<int> all_socket_fd_;
   char buffer_[kMaxConnection][kRecvBufferSize + 1];
 };
