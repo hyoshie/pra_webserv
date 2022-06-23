@@ -1,8 +1,8 @@
 SERVER_NAME = server
 CLIENT_NAME = client
 
-CFLAGS = -g -Wall -Werror -Wextra
-# CFLAGS = -g
+CXX = c++
+CXXFLAGS = -g -Wall -Werror -Wextra -fsanitize=address
 
 SRCS_DIR = ./src
 OBJS_DIR = ./obj
@@ -21,20 +21,24 @@ CLIENT_SRCS = TCPEchoClient.cpp \
 
 CLIENT_OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_SRCS:.cpp=.o)))
 
+DEPS = $(OBJS:%.o=%.d)
+
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
-	$(CXX) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 .PHONY: all
 all: $(OBJS_DIR) $(SERVER_NAME) $(CLIENT_NAME)
+
+-include $(DEPS)
 
 $(OBJS_DIR):
 	mkdir $@
 
 $(SERVER_NAME): $(SERVER_OBJS)
-	$(CXX) $(CFLAGS) $(SERVER_OBJS) -o $@
+	$(CXX) $(CXXFLAGS) $(SERVER_OBJS) -o $@
 
 $(CLIENT_NAME): $(CLIENT_OBJS)
-	$(CXX) $(CFLAGS) $(CLIENT_OBJS) -o $@
+	$(CXX) $(CXXFLAGS) $(CLIENT_OBJS) -o $@
 
 .PHONY: clean
 clean:
