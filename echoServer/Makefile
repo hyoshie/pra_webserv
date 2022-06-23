@@ -21,7 +21,7 @@ CLIENT_SRCS = TCPEchoClient.cpp \
 
 CLIENT_OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(CLIENT_SRCS:.cpp=.o)))
 
-DEPS = $(OBJS:%.o=%.d)
+DEPS = $(SERVER_OBJS:%.o=%.d) $(CLIENT_OBJS:%.o=%.d)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
@@ -42,7 +42,7 @@ $(CLIENT_NAME): $(CLIENT_OBJS)
 
 .PHONY: clean
 clean:
-	$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
+	$(RM) $(SERVER_OBJS) $(CLIENT_OBJS) $(DEPS)
 
 .PHONY: fclean
 fclean: clean
