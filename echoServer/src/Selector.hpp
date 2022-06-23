@@ -1,5 +1,5 @@
-#ifndef SELECTOR_HPP
-#define SELECTOR_HPP
+#ifndef ECHOSERVER_SRC_SELECTOR_HPP_
+#define ECHOSERVER_SRC_SELECTOR_HPP_
 
 #include <sys/select.h>
 #include <time.h>
@@ -11,7 +11,7 @@ void DieWithError(const char* errorMessage);
 
 class Selector {
  public:
-  Selector(std::set<int> readfds);
+  explicit Selector(std::set<int> readfds);
   ~Selector();
 
   void init(std::set<int> readfds);
@@ -23,12 +23,12 @@ class Selector {
   fd_set toFdset(std::set<int> cont_fds);
   std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
 
-  //アクセッサー
+  // アクセッサー
   int getEventCount() const;
   std::set<int> getReadyReadFds() const;
   std::set<int> getReadyWriteFds() const;
 
-  //デバッグ用
+  // デバッグ用
   void showDebugInfo() const;
 
  private:
@@ -52,4 +52,4 @@ class Selector {
   Selector& operator=(const Selector& other);
 };
 
-#endif /* SELECTOR_HPP */
+#endif  // ECHOSERVER_SRC_SELECTOR_HPP_

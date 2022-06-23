@@ -1,7 +1,7 @@
 #include "Server.hpp"
 
 Server::Server() {
-  //接続待受用のソケットを作る, socketクラス作ったほうがよさげ
+  // 接続待受用のソケットを作る, socketクラス作ったほうがよさげ
   struct sockaddr_in server_addr;
 
   listen_fd_ = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -15,8 +15,8 @@ Server::Server() {
   server_addr.sin_port = htons(kServerPort);
 
   int opt = 1;
-  if (setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, (char *)&opt,
-                 sizeof(int)) < 0) {
+  if (setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR,
+                 reinterpret_cast<char *>(&opt), sizeof(int)) < 0) {
     throw std::runtime_error("setsockopt() failed");
   }
 
@@ -30,7 +30,7 @@ Server::Server() {
   }
 }
 
-//デストラクターと例外の関係調べる
+// デストラクターと例外の関係調べる
 Server::~Server() {
   if (::close(listen_fd_) < 0) {
     // throw std::runtime_error("close failed()");
@@ -56,7 +56,7 @@ int Server::accept() {
     throw std::runtime_error("accept failed()");
   }
   connected_fd_.insert(tmp_socket);
-  //クライアントの数のバリデーション
+  // クライアントの数のバリデーション
   std::cout << "accept: fd(" << tmp_socket << "), "
             << "total connection:" << connected_fd_.size() << std::endl;
   return tmp_socket;

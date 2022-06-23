@@ -1,5 +1,5 @@
-#ifndef SERVER_HPP
-#define SERVER_HPP
+#ifndef ECHOSERVER_SRC_SERVER_HPP_
+#define ECHOSERVER_SRC_SERVER_HPP_
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -43,4 +43,4 @@ class Server {
   char buffer_[kMaxConnection][kRecvBufferSize + 1];
 };
 
-#endif /* SERVER_HPP */
+#endif  // ECHOSERVER_SRC_SERVER_HPP_

@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   // 1.Set up application and analyze params
   int sock;
   struct sockaddr_in echoServAddr;
-  unsigned short echoServPort;
+  uint16_t echoServPort;
   char *servIP;
   char *echoString;
   char echoBuffer[RCVBUFSIZE];
