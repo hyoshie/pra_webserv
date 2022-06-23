@@ -24,7 +24,7 @@ class Server {
   int recvClientMessage(int readable_fd);
   int sendMessage(int writable_fd);
 
-  //アクセッサー
+  // アクセッサー
   int getListenFd() const;
   const std::set<int>& getConnectedFd() const;
   const std::set<int>& getAllSocketFd() const;

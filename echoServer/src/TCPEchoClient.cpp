@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
   totalBytesRcvd = 0;
   printf("Recieved: ");
 
-  while (totalBytesRcvd < (int)echoStringLen) {
+  while (totalBytesRcvd < static_cast<int>(echoStringLen)) {
     if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE - 1, 0)) <= 0)
       DieWithError("recv() failed or connection closed prematurely");
     totalBytesRcvd += bytesRcvd;
