@@ -12,7 +12,7 @@ Server::Server() {
   memset(&server_addr, 0, sizeof(server_addr));
   server_addr.sin_family = AF_INET;
   server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-  server_addr.sin_port = htons(kServerPort);
+  server_addr.sin_port = htons(kServerPortBase);
 
   int opt = 1;
   if (setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR,
@@ -28,6 +28,7 @@ Server::Server() {
   if (listen(listen_fd_, kMaxPendig) < 0) {
     throw std::runtime_error("listen() failed");
   }
+  all_socket_fd_.insert(listen_fd_);
 }
 
 // デストラクターと例外の関係調べる
@@ -39,14 +40,9 @@ Server::~Server() {
 
 int Server::getListenFd() const { return listen_fd_; }
 
-std::set<int> Server::getConnectedFd() const { return connected_fd_; }
+const std::set<int> &Server::getConnectedFd() const { return connected_fd_; }
 
-std::set<int> Server::getAllSocketFd() const {
-  std::set<int> all_socket_fds(connected_fd_);
-
-  all_socket_fds.insert(listen_fd_);
-  return all_socket_fds;
-}
+const std::set<int> &Server::getAllSocketFd() const { return all_socket_fd_; }
 
 int Server::accept() {
   int tmp_socket;
@@ -56,6 +52,7 @@ int Server::accept() {
     throw std::runtime_error("accept failed()");
   }
   connected_fd_.insert(tmp_socket);
+  all_socket_fd_.insert(tmp_socket);
   // クライアントの数のバリデーション
   std::cout << "accept: fd(" << tmp_socket << "), "
             << "total connection:" << connected_fd_.size() << std::endl;
@@ -69,6 +66,7 @@ int Server::close(int fd) {
     throw std::runtime_error("close failed()");
   }
   connected_fd_.erase(fd);
+  all_socket_fd_.erase(fd);
   return ret;
 }
 
@@ -93,7 +91,7 @@ int Server::recvClientMessage(int readable_fd) {
 int Server::sendMessage(int writable_fd) {
   // char message[] = "42tokyo\n";
   if (send(writable_fd, buffer_[writable_fd], strlen(buffer_[writable_fd]),
-           0) != strlen(buffer_[writable_fd])) {
+           0) != (ssize_t)strlen(buffer_[writable_fd])) {
     throw std::runtime_error("send() failed");
   }
   return 0;

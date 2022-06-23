@@ -10,37 +10,38 @@ void eventLoop() {
 
   for (;;) {
     selector.init(serv.getAllSocketFd());
-    int event_cnt = selector.monitor();
+    selector.monitor();
+    // debug
     selector.showDebugInfo();
 
     // accept
-    std::set<int> readablefds = selector.getReadyReadFds();
-    if (readablefds.find(serv.getListenFd()) != readablefds.end()) {
+    std::set<int> readable_fds = selector.getReadyReadFds();
+    if (readable_fds.find(serv.getListenFd()) != readable_fds.end()) {
       serv.accept();
     }
 
     // read
-    std::set<int>::iterator it = readablefds.begin();
-    std::set<int>::iterator ite = readablefds.end();
+    std::set<int>::iterator it = readable_fds.begin();
+    std::set<int>::iterator ite = readable_fds.end();
     for (; it != ite; it++) {
       if (*it != serv.getListenFd()) {
         int recvMsgSize = serv.recvClientMessage(*it);
         if (recvMsgSize > 0) {
-          selector.addWriteFd(*it);
+          selector.addTargetWriteFd(*it);
         } else {
-          selector.removeWriteFd(*it);
+          selector.removeTargetWriteFd(*it);
           serv.close(*it);
         }
       }
     }
 
     // write
-    std::set<int> writablefds = selector.getReadyWriteFds();
-    it = writablefds.begin();
-    ite = writablefds.end();
+    std::set<int> writable_fds = selector.getReadyWriteFds();
+    it = writable_fds.begin();
+    ite = writable_fds.end();
     for (; it != ite; it++) {
-      int sendMsgSize = serv.sendMessage(*it);
-      selector.removeWriteFd(*it);
+      serv.sendMessage(*it);
+      selector.removeTargetWriteFd(*it);
     }
   }
 }
