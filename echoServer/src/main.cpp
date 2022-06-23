@@ -18,20 +18,19 @@ void eventLoop() {
     std::set<int> readable_fds = selector.getReadyReadFds();
     if (readable_fds.find(serv.getListenFd()) != readable_fds.end()) {
       serv.accept();
+      readable_fds.erase(serv.getListenFd());
     }
 
     // read
     std::set<int>::iterator it = readable_fds.begin();
     std::set<int>::iterator ite = readable_fds.end();
     for (; it != ite; it++) {
-      if (*it != serv.getListenFd()) {
-        int recvMsgSize = serv.recvClientMessage(*it);
-        if (recvMsgSize > 0) {
-          selector.addTargetWriteFd(*it);
-        } else {
-          selector.removeTargetWriteFd(*it);
-          serv.close(*it);
-        }
+      int recvMsgSize = serv.recvClientMessage(*it);
+      if (recvMsgSize > 0) {
+        selector.addTargetWriteFd(*it);
+      } else {
+        selector.removeTargetWriteFd(*it);
+        serv.close(*it);
       }
     }
 
