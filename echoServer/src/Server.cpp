@@ -68,8 +68,9 @@ int Server::close(int fd) {
 
 int Server::recvClientMessage(int readable_fd) {
   int recvMsgSize;
+  char buffer[kRecvBufferSize + 1];
 
-  recvMsgSize = recv(readable_fd, buffer_[readable_fd], kRecvBufferSize, 0);
+  recvMsgSize = recv(readable_fd, buffer, kRecvBufferSize, 0);
   if (recvMsgSize < 0) {
     throw std::runtime_error("recv() failed");
   }
@@ -77,17 +78,23 @@ int Server::recvClientMessage(int readable_fd) {
     std::cerr << "recv: EOF" << std::endl;
     return 0;
   }
-  buffer_[readable_fd][recvMsgSize] = '\0';
-  std::cerr << "recv from fd(" << readable_fd << "): " << buffer_[readable_fd]
-            << std::endl;
+  buffer[recvMsgSize] = '\0';
+  std::cerr << "recv from fd(" << readable_fd << "): " << buffer << std::endl;
+
+  std::string response(buffer);
+  response_message_[readable_fd] = response;
 
   return recvMsgSize;
 }
 
 int Server::sendMessage(int writable_fd) {
-  if (send(writable_fd, buffer_[writable_fd], strlen(buffer_[writable_fd]),
-           0) != (ssize_t)strlen(buffer_[writable_fd])) {
+  const char *response = response_message_[writable_fd].c_str();
+  size_t response_len = response_message_[writable_fd].size();
+
+  if (send(writable_fd, response, response_len, 0) !=
+      static_cast<ssize_t>(response_len)) {
     throw std::runtime_error("send() failed");
   }
+  response_message_.erase(writable_fd);
   return 0;
 }

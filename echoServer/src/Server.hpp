@@ -8,7 +8,9 @@
 #include <cstring>
 #include <exception>
 #include <iostream>
+#include <map>
 #include <set>
+#include <string>
 
 #include "color.hpp"
 
@@ -40,7 +42,7 @@ class Server {
 
   int listen_fd_;
   std::set<int> all_socket_fd_;
-  char buffer_[kMaxConnection][kRecvBufferSize + 1];
+  std::map<int, std::string> response_message_;
 };
 
 #endif  // ECHOSERVER_SRC_SERVER_HPP_
