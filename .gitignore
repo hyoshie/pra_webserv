@@ -34,4 +34,5 @@
 # practice
 http
 socketProgramming
-tmp
+*tmp
+*tags

@@ -1,0 +1,42 @@
+GET http://localhost
+User-Agent: lwp-request/6.43 libwww-perl/6.43
+
+200 OK
+Connection: close
+Date: Thu, 23 Jun 2022 16:44:53 GMT
+Accept-Ranges: bytes
+ETag: "5e889dfb-264"
+Server: nginx/1.18.0 (Ubuntu)
+Content-Length: 612
+Content-Type: text/html
+Last-Modified: Sat, 04 Apr 2020 14:47:23 GMT
+Client-Date: Thu, 23 Jun 2022 16:44:53 GMT
+Client-Peer: 127.0.0.1:80
+Client-Response-Num: 1
+Title: Welcome to nginx!
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
