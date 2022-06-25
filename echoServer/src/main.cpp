@@ -17,7 +17,8 @@ void eventLoop() {
     // accept
     std::set<int> readable_fds = selector.getReadyReadFds();
     if (readable_fds.find(serv.getListenFd()) != readable_fds.end()) {
-      serv.accept();
+      // serv.accept();
+      serv.createConnection();
       readable_fds.erase(serv.getListenFd());
     }
 
@@ -25,12 +26,14 @@ void eventLoop() {
     std::set<int>::iterator it = readable_fds.begin();
     std::set<int>::iterator ite = readable_fds.end();
     for (; it != ite; it++) {
-      int recvMsgSize = serv.recvClientMessage(*it);
+      // int recvMsgSize = serv.recvClientMessage(*it);
+      int recvMsgSize = serv.handleReadEvent(*it);
       if (recvMsgSize > 0) {
         selector.addTargetWriteFd(*it);
       } else {
         selector.removeTargetWriteFd(*it);
-        serv.close(*it);
+        // serv.close(*it);
+        serv.destroyConnection(*it);
       }
     }
 
@@ -39,7 +42,8 @@ void eventLoop() {
     it = writable_fds.begin();
     ite = writable_fds.end();
     for (; it != ite; it++) {
-      serv.sendMessage(*it);
+      serv.handleWriteEvent(*it);
+      // serv.sendMessage(*it);
       selector.removeTargetWriteFd(*it);
     }
   }

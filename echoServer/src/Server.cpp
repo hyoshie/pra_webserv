@@ -42,6 +42,23 @@ int Server::getListenFd() const { return listen_fd_; }
 
 const std::set<int> &Server::getAllSocketFd() const { return all_socket_fd_; }
 
+void Server::createConnection() {
+  int socket = accept();
+  Connection *new_Connection = new Connection(socket);
+  connections_.insert(std::pair<int, Connection *>(socket, new_Connection));
+}
+
+void Server::destroyConnection(int fd) {
+  close(fd);
+  delete connections_[fd];
+  connections_.erase(fd);
+}
+
+int Server::handleReadEvent(int fd) {
+  return connections_[fd]->handleReadEvent();
+}
+void Server::handleWriteEvent(int fd) { connections_[fd]->handleWriteEvent(); }
+
 int Server::accept() {
   int tmp_socket;
 
@@ -64,37 +81,4 @@ int Server::close(int fd) {
   }
   all_socket_fd_.erase(fd);
   return ret;
-}
-
-int Server::recvClientMessage(int readable_fd) {
-  int recvMsgSize;
-  char buffer[kRecvBufferSize + 1];
-
-  recvMsgSize = recv(readable_fd, buffer, kRecvBufferSize, 0);
-  if (recvMsgSize < 0) {
-    throw std::runtime_error("recv() failed");
-  }
-  if (recvMsgSize == 0) {
-    std::cerr << "recv: EOF" << std::endl;
-    return 0;
-  }
-  buffer[recvMsgSize] = '\0';
-  std::cerr << "recv from fd(" << readable_fd << "): " << buffer << std::endl;
-
-  std::string response(buffer);
-  response_message_[readable_fd] = response;
-
-  return recvMsgSize;
-}
-
-int Server::sendMessage(int writable_fd) {
-  const char *response = response_message_[writable_fd].c_str();
-  size_t response_len = response_message_[writable_fd].size();
-
-  if (send(writable_fd, response, response_len, 0) !=
-      static_cast<ssize_t>(response_len)) {
-    throw std::runtime_error("send() failed");
-  }
-  response_message_.erase(writable_fd);
-  return 0;
 }

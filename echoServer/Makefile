@@ -9,6 +9,7 @@ OBJS_DIR = ./obj
 
 SERVER_SRCS = Server.cpp \
 			  Selector.cpp \
+			  Connection.cpp \
 			  main.cpp \
 			  $(NULL)
 
