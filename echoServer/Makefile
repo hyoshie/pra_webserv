@@ -54,12 +54,15 @@ fclean: clean
 re: fclean all
 
 .PHONY: lint
+# シェルスクリプトにする
 LINT_TARGET = $(shell find src -type f \( -name '*.cpp' -o -name '*.hpp' \))
+TIDY_LOG = .clang_tidy_log
 lint:
 	@cpplint --filter=-build/include_subdir,-legal/copyright \
 			$(LINT_TARGET) > /dev/null
 	@echo "$(GREEN)Pass cpplint:)$(END)"
-	@clang-tidy $(LINT_TARGET) -- $(CXXFLAGS)
+	@clang-tidy $(LINT_TARGET) -- $(CXXFLAGS) > $(TIDY_LOG) 2> /dev/null
+	@cat $(TIDY_LOG)
 	@echo "$(GREEN)Pass clang-tidy:)$(END)"
 	@echo "$(GREEN)Wao, What a clean code:)$(END)"
 

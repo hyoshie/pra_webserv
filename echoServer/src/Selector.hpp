@@ -34,8 +34,8 @@ class Selector {
   Selector(const Selector& other);
   Selector& operator=(const Selector& other);
 
-  fd_set toFdset(std::set<int> cont_fds);
-  std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
+  static fd_set toFdset(std::set<int> cont_fds);
+  static std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
 
   int evnet_cnt_;
   int max_targetfd_;

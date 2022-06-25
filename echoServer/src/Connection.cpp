@@ -5,14 +5,15 @@ Connection::Connection(int accepted_fd) : socket_fd_(accepted_fd) {}
 Connection::~Connection() {}
 
 int Connection::handleReadEvent() {
-  ssize_t recv_size;
+  ssize_t recv_size = recvFromClient();
 
-  recv_size = recvFromClient();
   if (recv_size == 0) {
     return 0;
-  } else {
-    createResponse(recv_size);
   }
+  createResponse(recv_size);
+  // else {
+  //   createResponse(recv_size);
+  // }
   std::cerr << "recv from fd(" << socket_fd_ << "): " << response_ << std::endl;
   return recv_size;
 }
@@ -20,9 +21,7 @@ int Connection::handleReadEvent() {
 void Connection::handleWriteEvent() { sendResponse(); }
 
 ssize_t Connection::recvFromClient() {
-  ssize_t recv_size;
-
-  recv_size = recv(socket_fd_, recv_buffer_, kRecvBufferSize, 0);
+  ssize_t recv_size = recv(socket_fd_, recv_buffer_, kRecvBufferSize, 0);
   if (recv_size < 0) {
     throw std::runtime_error("recv() failed");
   }

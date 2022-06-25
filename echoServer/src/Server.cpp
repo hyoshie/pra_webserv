@@ -1,10 +1,9 @@
 #include "Server.hpp"
 
-Server::Server() {
+Server::Server() : listen_fd_(socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) {
   // 接続待受用のソケットを作る, socketクラス作ったほうがよさげ
   struct sockaddr_in server_addr;
 
-  listen_fd_ = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
   if (listen_fd_ < 0) {
     throw std::runtime_error("socket() failed");
   }
@@ -60,17 +59,15 @@ int Server::handleReadEvent(int fd) {
 void Server::handleWriteEvent(int fd) { connections_[fd]->handleWriteEvent(); }
 
 int Server::accept() {
-  int tmp_socket;
-
-  tmp_socket = ::accept(listen_fd_, NULL, NULL);
-  if (tmp_socket < 0) {
+  int new_socket = ::accept(listen_fd_, NULL, NULL);
+  if (new_socket < 0) {
     throw std::runtime_error("accept failed()");
   }
-  all_socket_fd_.insert(tmp_socket);
+  all_socket_fd_.insert(new_socket);
   // クライアントの数のバリデーション
-  std::cout << "accept: fd(" << tmp_socket << "), "
+  std::cout << "accept: fd(" << new_socket << "), "
             << "total connection:" << all_socket_fd_.size() - 1 << std::endl;
-  return tmp_socket;
+  return new_socket;
 }
 
 int Server::close(int fd) {
