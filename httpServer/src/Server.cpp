@@ -1,10 +1,9 @@
 #include "Server.hpp"
 
-Server::Server() {
+Server::Server() : listen_fd_(socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) {
   // 接続待受用のソケットを作る, socketクラス作ったほうがよさげ
   struct sockaddr_in server_addr;
 
-  listen_fd_ = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
   if (listen_fd_ < 0) {
     throw std::runtime_error("socket() failed");
   }
@@ -42,18 +41,33 @@ int Server::getListenFd() const { return listen_fd_; }
 
 const std::set<int> &Server::getAllSocketFd() const { return all_socket_fd_; }
 
-int Server::accept() {
-  int tmp_socket;
+void Server::createConnection() {
+  int socket = accept();
+  Connection *new_Connection = new Connection(socket);
+  connections_.insert(std::pair<int, Connection *>(socket, new_Connection));
+}
 
-  tmp_socket = ::accept(listen_fd_, NULL, NULL);
-  if (tmp_socket < 0) {
+void Server::destroyConnection(int fd) {
+  close(fd);
+  delete connections_[fd];
+  connections_.erase(fd);
+}
+
+int Server::handleReadEvent(int fd) {
+  return connections_[fd]->handleReadEvent();
+}
+void Server::handleWriteEvent(int fd) { connections_[fd]->handleWriteEvent(); }
+
+int Server::accept() {
+  int new_socket = ::accept(listen_fd_, NULL, NULL);
+  if (new_socket < 0) {
     throw std::runtime_error("accept failed()");
   }
-  all_socket_fd_.insert(tmp_socket);
+  all_socket_fd_.insert(new_socket);
   // クライアントの数のバリデーション
-  std::cout << "accept: fd(" << tmp_socket << "), "
+  std::cout << "accept: fd(" << new_socket << "), "
             << "total connection:" << all_socket_fd_.size() - 1 << std::endl;
-  return tmp_socket;
+  return new_socket;
 }
 
 int Server::close(int fd) {
@@ -64,37 +78,4 @@ int Server::close(int fd) {
   }
   all_socket_fd_.erase(fd);
   return ret;
-}
-
-int Server::recvClientMessage(int readable_fd) {
-  int recvMsgSize;
-  char buffer[kRecvBufferSize + 1];
-
-  recvMsgSize = recv(readable_fd, buffer, kRecvBufferSize, 0);
-  if (recvMsgSize < 0) {
-    throw std::runtime_error("recv() failed");
-  }
-  if (recvMsgSize == 0) {
-    std::cerr << "recv: EOF" << std::endl;
-    return 0;
-  }
-  buffer[recvMsgSize] = '\0';
-  std::cerr << "recv from fd(" << readable_fd << "): " << buffer << std::endl;
-
-  std::string response(buffer);
-  response_message_[readable_fd] = response;
-
-  return recvMsgSize;
-}
-
-int Server::sendMessage(int writable_fd) {
-  const char *response = response_message_[writable_fd].c_str();
-  size_t response_len = response_message_[writable_fd].size();
-
-  if (send(writable_fd, response, response_len, 0) !=
-      static_cast<ssize_t>(response_len)) {
-    throw std::runtime_error("send() failed");
-  }
-  response_message_.erase(writable_fd);
-  return 0;
 }

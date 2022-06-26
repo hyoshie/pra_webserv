@@ -39,10 +39,15 @@ re: fclean all
 
 .PHONY: lint
 LINT_TARGET = $(shell find src -type f \( -name '*.cpp' -o -name '*.hpp' \))
-lint:
+lint: cpplint tidylint
+
+cpplint:
 	@cpplint --filter=-build/include_subdir,-legal/copyright \
 			$(LINT_TARGET) > /dev/null
 	@echo "$(GREEN)Pass cpplint:)$(END)"
+	@echo "$(GREEN)Wao, What a clean code:)$(END)"
+
+tidylint:
 	@clang-tidy $(LINT_TARGET) -- $(CXXFLAGS)
 	@echo "$(GREEN)Pass clang-tidy:)$(END)"
 	@echo "$(GREEN)Wao, What a clean code:)$(END)"

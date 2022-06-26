@@ -1,5 +1,5 @@
-#ifndef ECHOSERVER_SRC_SELECTOR_HPP_
-#define ECHOSERVER_SRC_SELECTOR_HPP_
+#ifndef HTTPSERVER_SRC_SELECTOR_HPP_
+#define HTTPSERVER_SRC_SELECTOR_HPP_
 
 #include <sys/select.h>
 #include <time.h>
@@ -34,8 +34,8 @@ class Selector {
   Selector(const Selector& other);
   Selector& operator=(const Selector& other);
 
-  fd_set toFdset(std::set<int> cont_fds);
-  std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
+  static fd_set toFdset(std::set<int> cont_fds);
+  static std::set<int> toSet(fd_set fds, std::set<int> cont_fds);
 
   int evnet_cnt_;
   int max_targetfd_;
@@ -48,4 +48,4 @@ class Selector {
   std::set<int> ready_writefds_;
 };
 
-#endif  // ECHOSERVER_SRC_SELECTOR_HPP_
+#endif  // HTTPSERVER_SRC_SELECTOR_HPP_

@@ -1,8 +1,7 @@
 #include "Selector.hpp"
 
-Selector::Selector(std::set<int> readfds) {
+Selector::Selector(std::set<int> readfds) : max_target_writefd_(-1) {
   init(readfds);
-  max_target_writefd_ = -1;
 }
 
 Selector::~Selector() {}
