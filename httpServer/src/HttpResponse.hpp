@@ -42,7 +42,7 @@ class HttpResponse {
   HttpResponse(const HttpResponse& other);
   HttpResponse& operator=(const HttpResponse& other);
 
-  static const std::string& getReasonForStatus(HttpStatus status);
+  static const char* getReasonForStatus(HttpStatus status);
 
   std::string version_;
   HttpStatus status_code_;
@@ -50,21 +50,21 @@ class HttpResponse {
   std::string content_length_;
   std::string body_;
 
-  static const std::string kHttpReasonOk;
-  static const std::string kHttpReasonNoContent;
-  static const std::string kHttpReasonPartialContent;
-  static const std::string kHttpReasonMovedPermanently;
-  static const std::string kHttpReasonFound;
-  static const std::string kHttpReasonSeeOther;
-  static const std::string kHttpReasonNotModified;
-  static const std::string kHttpReasonTemporaryRedirect;
-  static const std::string kHttpReasonBadRequest;
-  static const std::string kHttpReasonUnauthorized;
-  static const std::string kHttpReasonForbidden;
-  static const std::string kHttpReasonNotFound;
-  static const std::string kHttpReasonInternalServerError;
-  static const std::string kHttpReasonServiceUnavailable;
-  static const std::string kHttpReasonUnknown;
+  static const char* kHttpReasonOk;
+  static const char* kHttpReasonNoContent;
+  static const char* kHttpReasonPartialContent;
+  static const char* kHttpReasonMovedPermanently;
+  static const char* kHttpReasonFound;
+  static const char* kHttpReasonSeeOther;
+  static const char* kHttpReasonNotModified;
+  static const char* kHttpReasonTemporaryRedirect;
+  static const char* kHttpReasonBadRequest;
+  static const char* kHttpReasonUnauthorized;
+  static const char* kHttpReasonForbidden;
+  static const char* kHttpReasonNotFound;
+  static const char* kHttpReasonInternalServerError;
+  static const char* kHttpReasonServiceUnavailable;
+  static const char* kHttpReasonUnknown;
 };
 
 #endif  // HTTPSERVER_SRC_HTTPRESPONSE_HPP_

@@ -41,16 +41,18 @@ re: fclean all
 LINT_TARGET = $(shell find src -type f \( -name '*.cpp' -o -name '*.hpp' \))
 lint: cpplint tidylint
 
+.PHONY: cpplint
 cpplint:
 	@cpplint --filter=-build/include_subdir,-legal/copyright \
 			$(LINT_TARGET) > /dev/null
-	@echo "$(GREEN)Pass cpplint:)$(END)"
-	@echo "$(GREEN)Wao, What a clean code:)$(END)"
+	@printf "$(GREEN)Pass cpplint:)$(END)"
+	@printf "$(GREEN)Wao, What a clean code:)$(END)"
 
+.PHONY: tidylint
 tidylint:
 	@clang-tidy $(LINT_TARGET) -- $(CXXFLAGS)
-	@echo "$(GREEN)Pass clang-tidy:)$(END)"
-	@echo "$(GREEN)Wao, What a clean code:)$(END)"
+	@printf "$(GREEN)Pass clang-tidy:)$(END)"
+	@printf "$(GREEN)Wao, What a clean code:)$(END)"
 
 ## Color
 END		= \e[0m

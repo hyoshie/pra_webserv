@@ -25,7 +25,7 @@ std::string HttpResponse::toString() const {
   return oss.str();
 }
 
-const std::string& HttpResponse::getReasonForStatus(HttpStatus status) {
+const char* HttpResponse::getReasonForStatus(HttpStatus status) {
   switch (status) {
     case HTTP_OK:
       return kHttpReasonOk;
@@ -60,22 +60,19 @@ const std::string& HttpResponse::getReasonForStatus(HttpStatus status) {
   }
 }
 
-const std::string HttpResponse::kHttpReasonOk = "OK";
-const std::string HttpResponse::kHttpReasonNoContent = "No Content";
-const std::string HttpResponse::kHttpReasonPartialContent = "Partial Content";
-const std::string HttpResponse::kHttpReasonMovedPermanently =
-    "Moved Permanently";
-const std::string HttpResponse::kHttpReasonFound = "Found";
-const std::string HttpResponse::kHttpReasonSeeOther = "See Other";
-const std::string HttpResponse::kHttpReasonNotModified = "Not Modified";
-const std::string HttpResponse::kHttpReasonTemporaryRedirect =
-    "Temporary Redirect";
-const std::string HttpResponse::kHttpReasonBadRequest = "Bad Request";
-const std::string HttpResponse::kHttpReasonUnauthorized = "Unauthorized";
-const std::string HttpResponse::kHttpReasonForbidden = "Forbidden";
-const std::string HttpResponse::kHttpReasonNotFound = "Not Found";
-const std::string HttpResponse::kHttpReasonInternalServerError =
+const char* HttpResponse::kHttpReasonOk = "OK";
+const char* HttpResponse::kHttpReasonNoContent = "No Content";
+const char* HttpResponse::kHttpReasonPartialContent = "Partial Content";
+const char* HttpResponse::kHttpReasonMovedPermanently = "Moved Permanently";
+const char* HttpResponse::kHttpReasonFound = "Found";
+const char* HttpResponse::kHttpReasonSeeOther = "See Other";
+const char* HttpResponse::kHttpReasonNotModified = "Not Modified";
+const char* HttpResponse::kHttpReasonTemporaryRedirect = "Temporary Redirect";
+const char* HttpResponse::kHttpReasonBadRequest = "Bad Request";
+const char* HttpResponse::kHttpReasonUnauthorized = "Unauthorized";
+const char* HttpResponse::kHttpReasonForbidden = "Forbidden";
+const char* HttpResponse::kHttpReasonNotFound = "Not Found";
+const char* HttpResponse::kHttpReasonInternalServerError =
     "Internal Server Error";
-const std::string HttpResponse::kHttpReasonServiceUnavailable =
-    "Service Unavailable";
-const std::string HttpResponse::kHttpReasonUnknown = "Hum..Unexecpted Error:(";
+const char* HttpResponse::kHttpReasonServiceUnavailable = "Service Unavailable";
+const char* HttpResponse::kHttpReasonUnknown = "Hum..Unexecpted Error:(";

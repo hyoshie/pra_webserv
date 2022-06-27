@@ -11,9 +11,6 @@ int Connection::handleReadEvent() {
     return 0;
   }
   createResponse(recv_size);
-  // else {
-  //   createResponse(recv_size);
-  // }
   std::cerr << "recv from fd(" << socket_fd_ << "): " << response_ << std::endl;
   return recv_size;
 }
@@ -31,11 +28,16 @@ ssize_t Connection::recvFromClient() {
   }
   return recv_size;
 }
+
+// GETメソッドのファイル決め打ち
 void Connection::createResponse(ssize_t recv_size) {
   recv_buffer_[recv_size] = '\0';
 
   HttpResponse *current_response_ = new HttpResponse();
-  current_response_->setBody("test body message\n");
+  std::ifstream ifs("Makefile");
+  std::string str((std::istreambuf_iterator<char>(ifs)),
+                  std::istreambuf_iterator<char>());
+  current_response_->setBody(str);
   response_ = current_response_->toString();
 }
 
@@ -48,3 +50,9 @@ void Connection::sendResponse() const {
     throw std::runtime_error("send() failed");
   }
 }
+
+// std::string readFile(const char *filename) {
+//   ifstream ifs(filename);
+//   return std::string(istreambuf_iterator<char>(ifs),
+//   istreambuf_iterator<char>());
+// }

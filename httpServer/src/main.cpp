@@ -12,7 +12,7 @@ void eventLoop() {
     selector.init(serv.getAllSocketFd());
     selector.monitor();
     // debug
-    selector.showDebugInfo();
+    // selector.showDebugInfo();
 
     // accept
     std::set<int> readable_fds = selector.getReadyReadFds();
