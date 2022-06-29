@@ -10,8 +10,9 @@ int Connection::handleReadEvent() {
   if (recv_size == 0) {
     return 0;
   }
-  createResponse(recv_size);
-  std::cerr << "recv from fd(" << socket_fd_ << "): " << response_ << std::endl;
+  std::cerr << "recv from fd(" << socket_fd_ << "): " << std::endl;
+  generateRequest(recv_size);
+  generateResponse(recv_size);
   return recv_size;
 }
 
@@ -19,6 +20,7 @@ void Connection::handleWriteEvent() { sendResponse(); }
 
 ssize_t Connection::recvFromClient() {
   ssize_t recv_size = recv(socket_fd_, recv_buffer_, kRecvBufferSize, 0);
+
   if (recv_size < 0) {
     throw std::runtime_error("recv() failed");
   }
@@ -29,11 +31,18 @@ ssize_t Connection::recvFromClient() {
   return recv_size;
 }
 
+void Connection::generateRequest(ssize_t recv_size) {
+  recv_buffer_[recv_size] = '\0';
+  current_request_ = request_parser_.parse(recv_buffer_);
+
+  std::cerr << *current_request_;
+}
+
 // GETメソッドのファイル決め打ち
-void Connection::createResponse(ssize_t recv_size) {
+void Connection::generateResponse(ssize_t recv_size) {
   recv_buffer_[recv_size] = '\0';
 
-  HttpResponse *current_response_ = new HttpResponse();
+  current_response_ = new HttpResponse();
   std::ifstream ifs("Makefile");
   std::string str((std::istreambuf_iterator<char>(ifs)),
                   std::istreambuf_iterator<char>());

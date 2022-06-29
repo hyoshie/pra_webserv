@@ -46,7 +46,7 @@ void eventLoop() {
 }
 
 int main() {
-  std::cout << YELLOW << "Welcome to EchoServer!" << RESET << std::endl;
+  std::cout << YELLOW << "Welcome to our http server!" << RESET << std::endl;
 
   try {
     eventLoop();

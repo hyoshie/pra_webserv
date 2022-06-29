@@ -8,7 +8,8 @@
 #include <iostream>
 #include <string>
 
-// #include "Request.hpp"
+#include "HttpRequest.hpp"
+#include "HttpRequestParser.hpp"
 #include "HttpResponse.hpp"
 
 class Connection {
@@ -28,13 +29,16 @@ class Connection {
   Connection& operator=(const Connection& other);
 
   ssize_t recvFromClient();
-  void createResponse(ssize_t recv_size);
+  void generateRequest(ssize_t recv_size);
+  void generateResponse(ssize_t recv_size);
   void sendResponse() const;
 
   int socket_fd_;
   char recv_buffer_[kRecvBufferSize + 1];
   std::string response_;
-  // Request* current_request_;
+  // この辺の変数のスコープと型（ポインタにするかしないかは後で考える)
+  HttpRequestParser request_parser_;
+  HttpRequest* current_request_;
   HttpResponse* current_response_;
 };
 
