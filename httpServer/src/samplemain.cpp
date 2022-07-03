@@ -3,15 +3,10 @@
 #include "Connection.hpp"
 #include "Server.hpp"
 #include "ServerSocket.hpp"
-
-void print(ASocket *socket) { socket->notifyFdEvent(); }
+#include "color.hpp"
 
 int main() {
-  // ServerSocket sock;
-  // Connection connection(5);
-
-  // print(&sock);
-  // print(&connection);
+  std::cout << YELLOW "start program" RESET << std::endl;
   Server server;
   server.run();
 }

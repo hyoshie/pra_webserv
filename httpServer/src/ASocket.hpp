@@ -1,11 +1,16 @@
 #ifndef ASOCKET_HPP
 #define ASOCKET_HPP
 
+#include <map>
+
+#include "Observer.hpp"
+
 class ASocket {
  public:
   ASocket(int fd);
   virtual ~ASocket();
-  virtual void notifyFdEvent() = 0;
+  virtual void notifyFdEvent(Observer* observer,
+                             std::map<int, ASocket*>* fd2socket) = 0;
   int getFd() const;
 
  protected:

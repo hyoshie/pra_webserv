@@ -9,7 +9,7 @@
 
 class EventLoop {
  public:
-  EventLoop(Observer* observer, const std::map<int, ASocket*>& fd2socket);
+  EventLoop(const std::map<int, ASocket*>& fd2socket);
   ~EventLoop();
 
   void loop();

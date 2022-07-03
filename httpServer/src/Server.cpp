@@ -9,8 +9,6 @@ void Server::run() {
   std::map<int, ASocket *> fd2set;
   fd2set[serv_sock.getFd()] = &serv_sock;
 
-  Observer *observer = new Observer;
-  observer->addTargetReadFd(serv_sock.getFd());
-  EventLoop eventloop(observer, fd2set);
+  EventLoop eventloop(fd2set);
   eventloop.loop();
 }

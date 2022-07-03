@@ -28,7 +28,7 @@ class Observer {
   Observer& operator=(const Observer& other);
 
   void printfdset(fd_set fds) const;
-  std::set<int> buildReadyFds() const;
+  std::set<int> buildReadyFds(fd_set readfds, fd_set writefds) const;
 
   int maxfd_;
   int evnet_cnt_;

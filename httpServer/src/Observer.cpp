@@ -27,7 +27,7 @@ void Observer::notifyFdEvent() {
   } else if (evnet_cnt_ == 0) {
     std::cerr << "Time out, you had tea break?" << std::endl;
   }
-  buildReadyFds();
+  readyfds_ = buildReadyFds(tmp_readfds, tmp_writefds);
 }
 
 // rbegin, 要素が０のときどうなるか怪しい
@@ -57,13 +57,13 @@ void Observer::delTargetWriteFd(int fd) {
 
 const std::set<int>& Observer::getReadyFds() const { return readyfds_; }
 
-std::set<int> Observer::buildReadyFds() const {
+std::set<int> Observer::buildReadyFds(fd_set readfds, fd_set writefds) const {
   std::set<int> new_readyfds;
   std::set<int>::iterator it = targetfds_.begin();
   std::set<int>::iterator ite = targetfds_.end();
 
   for (; it != ite; it++) {
-    if (FD_ISSET(*it, &readfds_) || FD_ISSET(*it, &writefds_)) {
+    if (FD_ISSET(*it, &readfds) || FD_ISSET(*it, &writefds)) {
       new_readyfds.insert(*it);
     }
   }

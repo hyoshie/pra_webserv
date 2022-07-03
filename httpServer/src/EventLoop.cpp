@@ -1,11 +1,16 @@
 #include "EventLoop.hpp"
 
 // EventLoop::EventLoop() : observer(new Observer) {}
-EventLoop::EventLoop(Observer *observer,
-                     const std::map<int, ASocket *> &fd2socket)
-    : observer_(observer), fd2socket_(fd2socket) {}
+EventLoop::EventLoop(const std::map<int, ASocket *> &fd2socket)
+    : observer_(new Observer), fd2socket_(fd2socket) {
+  std::map<int, ASocket *>::iterator it = fd2socket_.begin();
+  std::map<int, ASocket *>::iterator ite = fd2socket_.end();
+  for (; it != ite; it++) {
+    observer_->addTargetReadFd(it->first);
+  }
+}
 
-EventLoop::~EventLoop() {}
+EventLoop::~EventLoop() { delete observer_; }
 
 void EventLoop::loop() {
   while (true) {
@@ -15,7 +20,7 @@ void EventLoop::loop() {
     std::set<int>::iterator it = readyfds.begin();
     std::set<int>::iterator ite = readyfds.end();
     for (; it != ite; it++) {
-      fd2socket_[*it]->notifyFdEvent();
+      fd2socket_[*it]->notifyFdEvent(observer_, &fd2socket_);
     }
   }
 }

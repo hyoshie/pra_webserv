@@ -30,13 +30,27 @@ ServerSocket::ServerSocket()
 
 ServerSocket::~ServerSocket() {}
 
-void ServerSocket::notifyFdEvent() {
+void ServerSocket::notifyFdEvent(Observer *observer,
+                                 std::map<int, ASocket *> *fd2socket) {
   std::cout << "From notify" << std::endl;
-  std::cout << "fd:" << fd_ << std::endl;
-  std::cout << createConnection() << std::endl;
+  // std::cout << createConnection(observer) << std::endl;
+  Connection *new_connection = createConnection(observer);
+  observer->addTargetReadFd(new_connection->getFd());
+  (*fd2socket)[new_connection->getFd()] = new_connection;
 }
 
-int ServerSocket::createConnection() {
+Connection *ServerSocket::createConnection(Observer *observer) {
   std::cout << "From CreateCon" << std::endl;
-  return 2;
+  (void)observer;
+  int new_socket = accept(fd_, NULL, NULL);
+
+  if (new_socket < 0) {
+    throw std::runtime_error("accept failed()");
+  }
+  std::cout << "accept: fd(" << new_socket << ")" << std::endl;
+
+  Connection *new_connection = new Connection(new_socket);
+  // クライアントの数のバリデーション
+
+  return new_connection;
 }

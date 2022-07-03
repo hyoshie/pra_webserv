@@ -9,13 +9,15 @@
 #include <iostream>
 
 #include "ASocket.hpp"
+#include "Connection.hpp"
+#include "Observer.hpp"
 
 class ServerSocket : public ASocket {
  public:
   ServerSocket();
   ~ServerSocket();
 
-  void notifyFdEvent();
+  void notifyFdEvent(Observer* observer, std::map<int, ASocket*>* fd2socket);
 
  private:
   static const int kServerPort = 5000;
@@ -24,7 +26,7 @@ class ServerSocket : public ASocket {
   ServerSocket(const ServerSocket& other);
   ServerSocket& operator=(const ServerSocket& other);
 
-  int createConnection();
+  Connection* createConnection(Observer* observer);
 };
 
 #endif /* SERVERSOCKET_HPP */
