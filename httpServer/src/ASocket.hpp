@@ -6,6 +6,7 @@ class ASocket {
   ASocket(int fd);
   virtual ~ASocket();
   virtual void notifyFdEvent() = 0;
+  int getFd() const;
 
  protected:
   int fd_;

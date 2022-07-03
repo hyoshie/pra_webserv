@@ -18,9 +18,8 @@ class ServerSocket : public ASocket {
   void notifyFdEvent();
 
  private:
-  static const int kServerPortBase = 5000;
+  static const int kServerPort = 5000;
   static const int kMaxPendig = 5;
-  static const int kMaxConnection = 32;
 
   ServerSocket(const ServerSocket& other);
   ServerSocket& operator=(const ServerSocket& other);

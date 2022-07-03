@@ -2,12 +2,14 @@
 #define EVENTLOOP_HPP
 
 #include <map>
+#include <set>
 
 #include "ASocket.hpp"
+#include "Observer.hpp"
 
 class EventLoop {
  public:
-  EventLoop();
+  EventLoop(Observer* observer, const std::map<int, ASocket*>& fd2socket);
   ~EventLoop();
 
   void loop();
@@ -16,7 +18,7 @@ class EventLoop {
   EventLoop(const EventLoop& other);
   EventLoop& operator=(const EventLoop& other);
 
-  Observer* observer;
+  Observer* observer_;
   std::map<int, ASocket*> fd2socket_;
   ;
 };
