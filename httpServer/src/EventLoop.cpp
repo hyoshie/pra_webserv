@@ -15,12 +15,18 @@ EventLoop::~EventLoop() { delete observer_; }
 void EventLoop::loop() {
   while (true) {
     observer_->notifyFdEvent();
-    printf("[\x1b[32mpass observ\x1b[39m]\n");
     std::set<int> readyfds = observer_->getReadyFds();
     std::set<int>::iterator it = readyfds.begin();
     std::set<int>::iterator ite = readyfds.end();
     for (; it != ite; it++) {
       fd2socket_[*it]->notifyFdEvent(observer_, &fd2socket_);
+      // if (fd2socket_[*it]->getState() == CREATE) {
+      //   ;
+      //   ;
+      // } else if (~~ == CLOSE) {
+      // delete fd2socket_[*it];
+      // fd2socket_.erase(*it);
+      // }
     }
   }
 }

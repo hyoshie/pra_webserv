@@ -25,6 +25,7 @@ class Connection : public ASocket {
   enum State {
     READ,
     WRITE,
+    CLOSE,
   };
   static const int kRecvBufferSize = (1 << 16);
   // 65536, httpServerだとリクエストの文字数の上限かな

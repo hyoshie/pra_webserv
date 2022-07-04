@@ -19,10 +19,11 @@ void Connection::handleReadEvent(Observer *observer,
                                  std::map<int, ASocket *> *fd2socket) {
   ssize_t recv_size = recvFromClient();
 
+  (void)fd2socket;
   if (recv_size == 0) {
     observer->delTargetReadFd(fd_);
     // ここでコネクションオブジェクトを破棄したいけどするとバグ理想
-    state_ = WRITE;
+    state_ = CLOSE;
     return;
   }
   std::cerr << "recv from fd(" << fd_ << "): " << std::endl;

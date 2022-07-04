@@ -57,6 +57,8 @@ void Observer::delTargetWriteFd(int fd) {
 
 const std::set<int>& Observer::getReadyFds() const { return readyfds_; }
 
+const std::set<int>& Observer::getTargetFds() const { return targetfds_; }
+
 std::set<int> Observer::buildReadyFds(fd_set readfds, fd_set writefds) const {
   std::set<int> new_readyfds;
   std::set<int>::iterator it = targetfds_.begin();
